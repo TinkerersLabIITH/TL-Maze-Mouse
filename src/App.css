@@ -81,6 +81,11 @@ body {
     gap: 6vh;
     margin-top: 23vh;
   }
+  #milanlogo {
+    opacity: 0.3;
+    width: 50px;
+    margin-left: 5px;
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -206,5 +211,64 @@ body {
     align-items: center;
     margin-top: 7vh;
     gap: 5vh;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .dashboard {
+    background: linear-gradient(
+        180deg,
+        #010121 0%,
+        rgba(20, 20, 66, 0.73) 67.35%,
+        #010121 100%
+      ),
+      linear-gradient(
+        180deg,
+        #010121 0%,
+        rgba(20, 20, 66, 0.73) 67.35%,
+        #010121 100%
+      );
+    width: 92vw;
+    height: 94vh;
+    padding: 3vh 4vw;
+  }
+
+  .playpage-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .playpage-logo img {
+    width: 60px;
+  }
+
+  .mazebg img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 4;
+  }
+
+  .mazebg {
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    margin-left: -4vw;
+    margin-bottom: -6vh;
+  }
+
+  .playpage-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .playpage-micro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
 }
