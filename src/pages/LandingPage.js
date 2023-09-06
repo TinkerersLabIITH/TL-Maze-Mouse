@@ -14,9 +14,24 @@ function LandingPage() {
           <img src={tinkererLogo} alt="tinkerer logo" />
         </div>
             <div className="lpBox">
-                {/* <video width="320" height="240" src={gifLogo} loop="true" autoplay="true"/> */}
                <p className="headingMM">MICROMOUSE</p>
-               <p className="paraMM">loremipsum</p>
+               <p className="paraMM">loremiapsum</p>
+               <div className="playpage-buttons">
+          <div className="pink-button" style={{ width: "70%"}}>
+            <div className="pink-button-inner" style={{ width: "90%"}}>
+              <div className="pink-button-rect" />
+              <p style={{fontSize: "1.5rem", width: "max-content"}}>Login</p>
+            </div>
+          </div>
+          <div className="pink-button"  style={{ width: "80%"}}>
+            <div className="pink-button-inner" style={{ width: "90%"}}>
+              <div className="pink-button-rect" />
+              <p style={{ fontSize: "1.5rem", width: "max-content" }}>
+               LEADER BOARD
+              </p>
+            </div>
+          </div>
+        </div>
             </div>
         </div>
     )

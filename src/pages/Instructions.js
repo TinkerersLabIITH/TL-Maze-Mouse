@@ -2,7 +2,6 @@ import "../kaif.css"
 import tinkererLogo from "../assets/tinkererlogo.svg"
 import micromouseLogo from  "../assets/maze.svg"
 import milanlogo from "../assets/logocream.png"
-import Button from "../components/Button";
 // import gifLogo from "../assets/logoGif.mp4"
 function Instructions() {
     return(
@@ -19,8 +18,15 @@ function Instructions() {
            <p className="headingMMIp">HI PLAYER!!</p>
            <p className="paraMMIp">INSTRUCTIONS</p>
            <p className="paraMMIpSmall">loremipsum</p>
-           <div className="playpage-button">
-          <Button />
+           <div className="playpage-buttons">
+          <div className="pink-button">
+            <div className="pink-button-inner" style={{ width: "90%" }}>
+              <div className="pink-button-rect" />
+              <p style={{ fontSize: "1.5rem", width: "max-content" }}>
+               CONTINUE
+              </p>
+            </div>
+          </div>
         </div>
         </div>
     </div>
