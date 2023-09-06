@@ -1,4 +1,4 @@
-import "../index.css"
+import "../kaif.css"
 import tinkererLogo from "../assets/tinkererlogo.svg"
 import micromouseLogo from  "../assets/maze.svg"
 import milanlogo from "../assets/logocream.png"
