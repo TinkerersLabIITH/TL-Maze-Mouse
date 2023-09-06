@@ -94,7 +94,7 @@ body {
   }
 
   .pink-button:hover {
-    transform: scale(0.9);      
+    transform: scale(0.9);
   }
 
   .pink-button-inner {
@@ -115,9 +115,9 @@ body {
     color: #5efbfe;
     text-shadow: 2px 0px 1px rgba(5, 250, 255, 0.25),
       0px 4px 4px rgba(0, 0, 0, 0.25);
-      font-weight: 400;
-      font-size: 4rem;
-      user-select: none;
+    font-weight: 400;
+    font-size: 4rem;
+    user-select: none;
   }
 
   .pink-button-rect {
@@ -126,5 +126,85 @@ body {
     height: 7px;
     background: #c75aed;
     border-radius: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .welldonepage {
+    background: linear-gradient(
+        180deg,
+        #010121 0%,
+        rgba(20, 20, 66, 0.73) 67.35%,
+        #010121 100%
+      ),
+      linear-gradient(
+        180deg,
+        #010121 0%,
+        rgba(20, 20, 66, 0.73) 67.35%,
+        #010121 100%
+      );
+    width: 92vw;
+    height: 94vh;
+    padding: 3vh 4vw;
+  }
+
+  .playpage-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .playpage-logo img {
+    width: 60px;
+  }
+
+  .mazebg img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 4;
+  }
+
+  .mazebg {
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    margin-left: -4vw;
+    margin-bottom: -6vh;
+  }
+
+  .playpage-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .playpage-micro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .welldone-trophy {
+    z-index: 7;
+  }
+
+  .welldone-trophy img {
+    width: 150px;
+  }
+
+  .welldone-text {
+    color: #5efbfe;
+    z-index: 7;
+    font-size: 2rem;
+  }
+  .welldone-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 7vh;
+    gap: 5vh;
   }
 }
