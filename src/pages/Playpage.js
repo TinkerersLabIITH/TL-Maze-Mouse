@@ -12,7 +12,7 @@ function PlayPage() {
     <>
       <div className="playpage">
         <div className="playpage-logo">
-          <img src={milanlogo} alt="milan logo" />
+          <img src={milanlogo} alt="milan logo"  id="milanlogo"/>
           <img src={tinkerlogo} alt="tinkerer logo" />
         </div>
         <div className="playpage-micro">
