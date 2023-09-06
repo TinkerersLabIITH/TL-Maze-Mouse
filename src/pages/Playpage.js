@@ -2,9 +2,9 @@ import "../App.css";
 import mazebg from "../assets/maze.svg";
 import tinkerlogo from "../assets/tinkererlogo.svg";
 import milanlogo from "../assets/logocream.png";
-import Button from "../components/Button";
 import micromouselogo from "../assets/micromouselogo.png";
 import {useNavigate} from 'react-router-dom'
+// import Button from "../components/Button";
 
 function PlayPage() {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ function PlayPage() {
           <div className="pink-button">
             <div className="pink-button-inner">
               <div className="pink-button-rect" />
-              <p style={{ fontSize: "1.5rem", width: "max-content" }}>
+              <p style={{ fontSize: "1.5rem", width: "max-content"}}>
                 Watch demo
               </p>
             </div>
