@@ -132,6 +132,11 @@ body {
   object-fit: cover;
   z-index: 1;
   }
+  .milanlogo {
+    opacity: 0.3;
+    width: 50px;
+    margin-left: 5px;
+  }
   
 }
 @media screen and (max-width: 800px) {

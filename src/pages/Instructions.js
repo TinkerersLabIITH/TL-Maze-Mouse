@@ -12,7 +12,7 @@ function Instructions() {
             <img src={micromouseLogo} alt ="The logo of MicroMouse"/>
             </div>
             <div className="playpage-logo">
-      <img src={milanlogo} alt="milan logo" />
+      <img src={milanlogo} alt="milan logo"  className="milanlogo"/>
       <img src={tinkererLogo} alt="tinkerer logo" />
     </div>
         <div className="lpBox">
