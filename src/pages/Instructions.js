@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import tinkererLogo from "../assets/tinkererlogo.svg"
 import micromouseLogo from  "../assets/maze.svg"
 import milanlogo from "../assets/logocream.png"
+import mmouse from "../assets/micromouselogo.png"
 // import gifLogo from "../assets/logoGif.mp4"
 function Instructions() {
     const navigate = useNavigate();
@@ -16,11 +17,12 @@ function Instructions() {
       <img src={tinkererLogo} alt="tinkerer logo" />
     </div>
         <div className="lpBox">
+            <img src={mmouse } alt="Micro Mouse logo"/>
             {/* <video width="320" height="240" src={gifLogo} loop="true" autoplay="true"/> */}
            <p className="headingMMIp">HI PLAYER!!</p>
            <p className="paraMMIp">INSTRUCTIONS</p>
            <p className="paraMMIpSmall">loremipsum</p>
-           <div className="playpage-buttons">
+           <div className="playpage-buttons" style={{ marginTop:"10vh"}}>
           <div className="pink-button" onClick={() => navigate('/game')}>
             <div className="pink-button-inner" style={{ width: "90%" }}>
               <div className="pink-button-rect" />
