@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Audiowide", cursive, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Audiowide", cursive;
+}
+
+.desktoppage {
+  background: linear-gradient(
+      180deg,
+      #010121 0%,
+      rgba(20, 20, 66, 0.73) 67.35%,
+      #010121 100%
+    ),
+    linear-gradient(
+      180deg,
+      #010121 0%,
+      rgba(20, 20, 66, 0.73) 67.35%,
+      #010121 100%
+    );
+  width: 92vw;
+  height: 94vh;
+  padding: 3vh 4vw;
+}
+
+.playpage-logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.playpage-logo img {
+  width: 80px;
+}
+
+.playpage-micro {
+  display: flex;
+  justify-content: center;
+}
+
+.desktop-text {
+  text-align: center;
+  margin-top: 10vh;
+  color: #5efbfe;
+  text-shadow: 2px 0px 1px rgba(5, 250, 255, 0.25),
+    0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-weight: 400;
+  font-size: 1.7rem;
+  user-select: none;
+  animation: text-animation 2s infinite linear;
+}
+
+@keyframes text-animation {
+    0% {
+        text-shadow: none;
+    }
+
+    50% {
+        text-shadow: 3px 0px 1px rgba(5, 250, 255, 0.25),
+    0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    100% {
+        text-shadow: none;
+    }
+}
