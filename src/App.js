@@ -7,7 +7,8 @@ import LandingPage from "./pages/LandingPage";
 import Instructions from "./pages/Instructions";
 import Dashboard from "./pages/Dashboard";
 import Playpage from "./pages/Playpage";
-import Game from "./pages/Game";
+import Game from "./pages/Game2";
+// import Canvas from "./pages/script";
 import DesktopPage from "./pages/DesktopPage";
 
 function App() {
@@ -32,10 +33,12 @@ function App() {
     { path: "/playpage", element: <Playpage /> },
     { path: "/Instructions", element: <Instructions /> },
     { path: "/dashboard", element: <Dashboard /> },
-    { path: "/game", element: <Game /> },
+    // { path: "/game", element: <Canvas /> },
     { path: "/leaderboard", element: <LeaderBoard /> },
     { path: "/promotion", element: <Promotion /> },
     { path: "/welldone", element: <WellDone /> },
+    { path: "/game", element: <Game/> },
+
   ]);
   return windowSize[0] > 800 ? (
     <DesktopPage />
