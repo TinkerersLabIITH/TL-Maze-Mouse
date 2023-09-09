@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import WellDone from "./pages/WellDone";
 import Promotion from "./pages/Promotion";
@@ -28,22 +28,24 @@ function App() {
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
-  const router = createBrowserRouter([
-    { path: "/", element: <LandingPage /> },
-    { path: "/playpage", element: <Playpage /> },
-    { path: "/Instructions", element: <Instructions /> },
-    { path: "/dashboard", element: <Dashboard /> },
-    // { path: "/game", element: <Canvas /> },
-    { path: "/leaderboard", element: <LeaderBoard /> },
-    { path: "/promotion", element: <Promotion /> },
-    { path: "/welldone", element: <WellDone /> },
-    { path: "/game", element: <Game/> },
 
-  ]);
+  
   return windowSize[0] > 800 ? (
     <DesktopPage />
+    // <LeaderBoard/>
   ) : (
-    <RouterProvider router={router} />
+    <HashRouter basename='/TL-Maze-Mouse' >
+      <Routes>
+        <Route path="/" component={LandingPage} />
+        <Route path="/playpage" component={Playpage} />
+        <Route path="/Instructions" component={Instructions} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/game" component={Game} />
+        <Route path="/leaderboard" component={LeaderBoard} />
+        <Route path="/promotion" component={Promotion} />
+        <Route path="/welldone" component={WellDone} />
+      </Routes>
+    </HashRouter>
   );
 }
 
