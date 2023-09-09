@@ -1,7 +1,6 @@
 import "../index.css"
 import tinkererLogo from "../assets/tinkererlogo.svg"
 import micromouseLogo from  "../assets/maze.svg"
-import milanlogo from "../assets/logocream.png"
 import {useNavigate} from 'react-router-dom'
 import mmouse from "../assets/micromouselogo.png"
 // import gifLogo from "../assets/logoGif.mp4"

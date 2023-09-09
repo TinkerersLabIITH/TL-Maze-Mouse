@@ -1,7 +1,7 @@
 import "../kaif.css"
 import tinkererLogo from "../assets/tinkererlogo.svg"
 import micromouseLogo from  "../assets/maze.svg"
-import milanlogo from "../assets/logocream.png"
+// import milanlogo from "../assets/logocream.png"
 import mmouse from "../assets/micromouselogo.png"
 // import gifLogo from "../assets/logoGif.mp4"
 function LandingPage() {
@@ -14,7 +14,7 @@ function LandingPage() {
           <img src={tinkererLogo} alt="tinkerer logo" />
         </div>
             <div className="lpBox">
-                <img src={mmouse}/>
+                <img src={mmouse} alt="logo"/>
                <p className="headingMM">LEADER BOARD</p>
             </div>
         </div>
