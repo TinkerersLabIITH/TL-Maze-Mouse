@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/TL-Maze-Mouse/static/css/main.52a58af9.css",
-    "main.js": "/TL-Maze-Mouse/static/js/main.ce88a7e2.js",
-    "static/media/tinkererlogo.svg": "/TL-Maze-Mouse/static/media/tinkererlogo.985a1c03124d140c5773b1963c799ac3.svg",
-    "static/media/logocream.png": "/TL-Maze-Mouse/static/media/logocream.aea9fa70f3685738aa87.png",
-    "static/media/Tl_logo_opq.png": "/TL-Maze-Mouse/static/media/Tl_logo_opq.ffff816e6b4cf6defdcf.png",
-    "static/media/micromouselogo.png": "/TL-Maze-Mouse/static/media/micromouselogo.581cab791dc351f0baec.png",
-    "static/media/maze.svg": "/TL-Maze-Mouse/static/media/maze.e3979c9ce6c4a9b329c42c97fd6e63e9.svg",
-    "static/media/trophy.svg": "/TL-Maze-Mouse/static/media/trophy.2e2daa40365ca6d7b4b310ed9fa31027.svg",
-    "index.html": "/TL-Maze-Mouse/index.html",
-    "main.52a58af9.css.map": "/TL-Maze-Mouse/static/css/main.52a58af9.css.map",
-    "main.ce88a7e2.js.map": "/TL-Maze-Mouse/static/js/main.ce88a7e2.js.map"
+    "main.css": "/static/css/main.15739dbc.css",
+    "main.js": "/static/js/main.9123d185.js",
+    "static/media/tinkererlogo.svg": "/static/media/tinkererlogo.985a1c03124d140c5773b1963c799ac3.svg",
+    "static/media/logocream.png": "/static/media/logocream.aea9fa70f3685738aa87.png",
+    "static/media/Tl_logo_opq.png": "/static/media/Tl_logo_opq.ffff816e6b4cf6defdcf.png",
+    "static/media/micromouselogo.png": "/static/media/micromouselogo.581cab791dc351f0baec.png",
+    "static/media/maze.svg": "/static/media/maze.e3979c9ce6c4a9b329c42c97fd6e63e9.svg",
+    "static/media/trophy.svg": "/static/media/trophy.2e2daa40365ca6d7b4b310ed9fa31027.svg",
+    "index.html": "/index.html",
+    "main.15739dbc.css.map": "/static/css/main.15739dbc.css.map",
+    "main.9123d185.js.map": "/static/js/main.9123d185.js.map"
   },
   "entrypoints": [
-    "static/css/main.52a58af9.css",
-    "static/js/main.ce88a7e2.js"
+    "static/css/main.15739dbc.css",
+    "static/js/main.9123d185.js"
   ]
 }
