@@ -25,7 +25,7 @@ function App() {
 
     return () => {
       window.removeEventListener("resize", handleWindowResize);
-    };Browser
+    };
   }, []);
   const router = createHashRouter([
     { path: "/", element: <LandingPage /> },
