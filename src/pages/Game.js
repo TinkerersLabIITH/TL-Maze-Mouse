@@ -3,11 +3,14 @@ import React, { Component } from 'react';
 import Maze from './game_components/maze'
 import DrawMaze from './game_components/drawmaze'
 import Player from './game_components/player'
+import "./style.css"
 
 
 class Game extends Component {
   constructor(props) {
     super(props);
+    this.mazeCanvasRef = React.createRef(); // Create a ref for the canvas element
+    this.viewRef = React.createRef();
     this.state = {
       mazeCanvas: null,
       sprite: new Image(),
@@ -18,38 +21,89 @@ class Game extends Component {
       cellSize: null,
       difficulty: 11,
     };
+    
   }
 
   componentDidMount() {
-    this.initMaze();
+    this.initCanvasContext(); // Initialize canvas context
+    if (!this.initMazeCalled) {
+      this.initMaze();
+      this.initMazeCalled = true; // Set the flag to true
+    }
   }
-
+  
+  initCanvasContext = () => {
+    console.log("initCanvasContext");
+    const mazeCanvas = this.mazeCanvasRef.current;
+    const ctx = mazeCanvas.getContext('2d');
+    // console.log(ctx);
+    if (!this.initCanvasContextCalled) {
+      console.log(ctx);
+      this.initCanvasContextCalled = true; // Set the flag to true
+    }
+    const view = this.viewRef.current;
+  
+    this.setState({ mazeCanvas, ctx, view });
+  }
+  
   initMaze = () => {
-    const { mazeCanvas, sprite, finishSprite, difficulty } = this.state;
+    console.log("initmaze");
+    const mazeCanvas = this.mazeCanvasRef.current; // Access the canvas element using the ref
+    if (!this.initMazeCalled) {
+      console.log(mazeCanvas);
+      this.initMazeCalled = true; // Set the flag to true
+    
 
+    const { finishSprite, difficulty } = this.state;
+  
     if (mazeCanvas) {
       this.playerUnbindKeyDown();
       this.setState({ mazeCanvas: null, player: null });
+      // console.log("Canvas and player unbound");
     }
 
-    sprite.src = './mouse.png?' + new Date().getTime();
-    sprite.setAttribute('crossOrigin', 'anonymous');
+    const sprite = new Image();
+    // console.log(sprite.onload);
+    sprite.src =  '/mouse.png';
+    console.log(sprite);
+
+  
     sprite.onload = () => {
-      finishSprite.src = './cheese.png?' + new Date().getTime();
+      // console.log("Sprite loaded");
+      finishSprite.src ='/cheese.png';
+      // console.log(finishSprite);
       finishSprite.setAttribute('crossOrigin', 'anonymous');
       finishSprite.onload = () => {
+        // console.log("Finish sprite loaded");
         const cellSize = mazeCanvas.width / difficulty;
-        const maze = new Maze(difficulty, difficulty);
-        const draw = new DrawMaze(maze, this.ctx, cellSize, finishSprite);
-        const player = new Player(maze, mazeCanvas, cellSize, this.displayVictoryMess, sprite);
+        // console.log(cellSize);
+        const maze = new Maze({width:difficulty, height:difficulty});
+        console.log(maze);
+        const draw = new DrawMaze( this.state.ctx, cellSize, finishSprite);
+        // console.log(draw);
+        
+        const player = new Player({ maze, mazeCanvas, cellSize, displayVictoryMess: this.displayVictoryMess, sprite });
+
         this.setState({ maze, draw, player, cellSize });
         if (this.mazeContainer.style.opacity < '100') {
           this.mazeContainer.style.opacity = '100';
         }
+        
       };
     };
-  };
 
+    sprite.onerror = (error) => {
+      console.error("Error loading sprite:", error);
+    };
+  
+
+
+    sprite.setAttribute('crossOrigin', 'anonymous');
+    // console.log(sprite);
+    
+  }
+}
+  
   displayVictoryMess = (moves) => {
     this.moves.innerHTML = 'You Moved ' + moves + ' Steps.';
     this.toggleVisibility('Message-Container');
@@ -184,10 +238,7 @@ class Game extends Component {
               className="border"
               height="900"
               width="900"
-              ref={(canvas) => {
-                this.mazeCanvas = canvas;
-                this.ctx = canvas.getContext('2d');
-              }}
+              ref={this.mazeCanvasRef}
             ></canvas>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import  { Component } from 'react';
-import Maze from './maze';
+// import Maze from './maze';
 
 class DrawMaze extends Component {
   constructor(props) {
@@ -11,8 +11,10 @@ class DrawMaze extends Component {
     };
   }
   componentDidMount() {
-    const { maze } = this.props;
+    const { maze } = this.props.props;
+    console.log(maze);
     const map = maze.map();
+    console.log(map);
     this.setState({ map, drawEndMethod: this.drawEndSprite });
   }
 
@@ -26,7 +28,8 @@ class DrawMaze extends Component {
     const x = xCord * this.state.cellSize;
     const y = yCord * this.state.cellSize;
     const ctx = this.props.ctx;
-
+    ctx.strokeStyle = "white";
+    console.log("strokestyle");
     if (!cell.n) {
       ctx.beginPath();
       ctx.moveTo(x, y);
@@ -66,18 +69,18 @@ class DrawMaze extends Component {
   drawEndSprite = () => {
     const offsetLeft = this.cellSize / 50;
     const offsetRight = this.cellSize / 25;
-    const coord = Maze.endCoord();
+    const coord = this.props.maze.endCoord();
 
-    this.ctx.drawImage(
-      this.endSprite,
+    this.props.ctx.drawImage(
+      this.props.endSprite,
       2,
       2,
-      this.endSprite.width,
-      this.endSprite.height,
-      coord.x * this.cellSize + offsetLeft,
-      coord.y * this.cellSize + offsetLeft,
-      this.cellSize - offsetRight,
-      this.cellSize - offsetRight
+      this.props.endSprite.width,
+      this.props.endSprite.height,
+      coord.x * this.state.cellSize + offsetLeft,
+      coord.y * this.state.cellSize + offsetLeft,
+      this.state.cellSize - offsetRight,
+      this.state.cellSize - offsetRight
     );
   };
 

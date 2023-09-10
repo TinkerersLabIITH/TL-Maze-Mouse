@@ -3,6 +3,7 @@ import Canvas from './Canvas';
 import Maze from './game_components/maze';
 import DrawMaze from './game_components/drawmaze';
 import Player from './game_components/player';
+import "./style.css";
 
 function Game2() {
   const sprite = new Image(); // Define your sprite here
