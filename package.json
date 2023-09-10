@@ -1,5 +1,6 @@
 {
   "name": "maze",
+  "homepage": "https://tinkererslabiith.github.io/TL-Maze-Mouse/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
