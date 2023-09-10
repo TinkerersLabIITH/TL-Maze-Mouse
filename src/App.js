@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import { useState, useEffect } from "react";
 import WellDone from "./pages/WellDone";
 import Promotion from "./pages/Promotion";
@@ -25,9 +25,9 @@ function App() {
 
     return () => {
       window.removeEventListener("resize", handleWindowResize);
-    };
+    };Browser
   }, []);
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     { path: "/", element: <LandingPage /> },
     { path: "/playpage", element: <Playpage /> },
     { path: "/Instructions", element: <Instructions /> },
