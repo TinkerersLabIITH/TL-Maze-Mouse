@@ -310,3 +310,28 @@ body {
     left: -2vw;
   }
 }
+
+@media screen and (max-width: 800px) {
+.leaderboard-div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.leaderboard {
+  width: max-content;
+  max-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  padding: 2vh 10vw;
+  gap: 2vh;
+  border: 1px solid #05faff;
+  height: 30vh;
+  overflow-y: scroll;
+  z-index: 10;
+  border-radius: 10px;
+}
+
+}
