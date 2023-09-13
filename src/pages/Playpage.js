@@ -19,10 +19,11 @@ function PlayPage() {
           <img src={micromouselogo} alt="micromouse logo" />
         </div>
         <div className="playpage-buttons">
-          <div className="pink-button" onClick={() => navigate('/instructions')}>
-            <div className="pink-button-inner">
-              <div className="pink-button-rect" />
-              <p>PLAY</p>
+          <div className="pink-button" onClick={() => navigate('/instructions')}
+          style={{width:"90%"}}>
+            <div className="pink-button-inner" style={{width:"90%"}}>
+              <div className="pink-button-rect"/>
+              <p style={{fontSize:"2rem"}}>PLAY DEMO</p>
             </div>
           </div>
           <div className="pink-button">
