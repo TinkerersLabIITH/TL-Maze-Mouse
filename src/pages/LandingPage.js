@@ -64,11 +64,10 @@ function handleLogin(e) {
             Login_Time: result.user.metadata.lastSignInTime,
             T1: 0,
             T2: 0,
-            T3: 0,
             Score: 0,
           });
         }
-        window.location = "/leaderboard#leaderboard";
+        window.location = "/TL-Maze-Mouse/#/Instructions";
       }
     })
     .catch((error) => {
