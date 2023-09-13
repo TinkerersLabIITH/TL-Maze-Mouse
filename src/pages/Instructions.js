@@ -22,7 +22,7 @@ function Instructions() {
            <p className="paraMMIp">INSTRUCTIONS</p>
            <p className="paraMMIpSmall">loremipsum</p>
            <div className="playpage-buttons" style={{ marginTop:"10vh"}}>
-          <div className="pink-button" onClick={() => navigate('/game')}>
+          <div className="pink-button" >
             <div className="pink-button-inner" style={{ width: "90%" }}>
               <div className="pink-button-rect" />
               <p style={{ fontSize: "1.5rem", width: "max-content" }}>
