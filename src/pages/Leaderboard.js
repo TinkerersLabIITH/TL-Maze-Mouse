@@ -54,11 +54,18 @@ function LandingPage() {
         <img src={mmouse} />
         <p className="headingMM">LEADER BOARD</p>
         <div className="leaderboard">
-          {Object.values(scores).map((item, index) => {
-            return (
-              <Leaderboarddiv key={index} name={item.Name} time={item.Score} pos={index+1}/>
-            );
-          })}
+          <div className="leaderboard-in">
+            {Object.values(scores).map((item, index) => {
+              return (
+                <Leaderboarddiv
+                  key={index}
+                  name={item.Name}
+                  time={item.Score}
+                  pos={index + 1}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
       <div className="button-wrap">
