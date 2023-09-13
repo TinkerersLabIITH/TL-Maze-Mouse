@@ -19,6 +19,7 @@ import {
 } from "firebase/firestore";
 import { app } from "../firebase.config";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 // import gifLogo from "../assets/logoGif.mp4"
 
 const db = getFirestore(app);
@@ -30,7 +31,9 @@ initialSnapshot.forEach((e) => {
   temp.push(e.data());
   console.log(e.data());
 });
+
 function LandingPage() {
+  const navigate = useNavigate();
   const [scores, setScores] = useState(temp);
   onSnapshot(q, (snapshot) => {
     temp = [];
@@ -53,9 +56,21 @@ function LandingPage() {
         <div className="leaderboard">
           {Object.values(scores).map((item, index) => {
             return (
-              <Leaderboarddiv key={index} name={item.Name} time={item.Score} />
+              <Leaderboarddiv key={index} name={item.Name} time={item.Score} pos={index+1}/>
             );
           })}
+        </div>
+      </div>
+      <div className="button-wrap">
+        <div
+          className="pink-button"
+          style={{ width: "45%" }}
+          onClick={() => navigate(-1)}
+        >
+          <div className="pink-button-inner" style={{ width: "90%" }}>
+            <div className="pink-button-rect" />
+            <p style={{ fontSize: "1.5rem", width: "max-content" }}>BACK</p>
+          </div>
         </div>
       </div>
     </div>

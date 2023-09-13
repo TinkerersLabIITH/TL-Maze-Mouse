@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import WellDone from './pages/WellDone';
 import Promotion from './pages/Promotion';
@@ -33,7 +33,7 @@ function App() {
         <DesktopPage />
       ) : (
         <Routes>
-          <Route path="/" element={<Intro />} />
+          <Route exact path="/" element={<Intro />} />
           <Route path="/landing" element={<LandingPage />} />
           <Route path="/playpage" element={<Playpage />} />
           <Route path="/Instructions" element={<Instructions />} />
