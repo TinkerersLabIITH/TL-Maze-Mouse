@@ -339,7 +339,6 @@ body {
   .leaderboard {
     width: 80vw;
     max-height: 40vh;
-    
     padding: 2vh 5vw;
     gap: 0.7vh;
     border: 1px solid #05faff;
@@ -358,8 +357,8 @@ body {
     gap: 0.7vh;
     width: 100%;
     height: 100%;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
   }
 }
 
