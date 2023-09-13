@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard';
 import Playpage from './pages/Playpage';
 import Game from './pages/Game';
 import DesktopPage from './pages/DesktopPage';
+import Intro from './pages/Intro';
 
 function App() {
   const [windowSize, setWindowSize] = useState([window.innerWidth, window.innerHeight]);
@@ -32,7 +33,8 @@ function App() {
         <DesktopPage />
       ) : (
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<Intro />} />
+          <Route path="/landing" element={<LandingPage />} />
           <Route path="/playpage" element={<Playpage />} />
           <Route path="/Instructions" element={<Instructions />} />
           <Route path="/dashboard" element={<Dashboard />} />

@@ -282,7 +282,7 @@ body {
     border-radius: 50%;
     padding: 10px;
     position: absolute;
-    left:10vw;
+    left: 10vw;
   }
 
   .pink-btn-c-i {
@@ -312,26 +312,61 @@ body {
 }
 
 @media screen and (max-width: 800px) {
-.leaderboard-div {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  .leaderboard-div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .leaderboard {
+    width: max-content;
+    max-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2vh 10vw;
+    gap: 2vh;
+    border: 1px solid #05faff;
+    height: 30vh;
+    overflow-y: scroll;
+    z-index: 10;
+    border-radius: 10px;
+  }
 }
 
-.leaderboard {
-  width: max-content;
-  max-height: 40vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  justify-content: center;
-  padding: 2vh 10vw;
-  gap: 2vh;
-  border: 1px solid #05faff;
-  height: 30vh;
-  overflow-y: scroll;
-  z-index: 10;
-  border-radius: 10px;
-}
+@media screen and (max-width: 800px) {
+  .intro-page {
+    background: linear-gradient(
+        180deg,
+        #010121 0%,
+        rgba(20, 20, 66, 0.73) 67.35%,
+        #010121 100%
+      ),
+      linear-gradient(
+        180deg,
+        #010121 0%,
+        rgba(20, 20, 66, 0.73) 67.35%,
+        #010121 100%
+      );
+    width: 92vw;
+    height: 94vh;
+    padding: 3vh 4vw;
+  }
+  .intro-page .playpage-micro img {
+    width: 80%;
+    z-index: 10;
+    border-radius: 50%;
+    margin-top: 5vh;
+  }
 
+  .intro-text p{
+    color: #5efbfe;
+    z-index: 7;
+    font-size: 3rem;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    margin-top: 5vh;
+  }
 }
