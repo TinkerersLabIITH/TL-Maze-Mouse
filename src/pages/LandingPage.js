@@ -21,73 +21,73 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import { useEffect, useState } from "react";
 // import gifLogo from "../assets/logoGif.mp4"
 
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
 const db = getFirestore(app);
-function handleLogin(e) {
-  signInWithPopup(auth, provider)
-    .then(async (result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
-      if (!user.email.endsWith("@iith.ac.in")) {
-        signOut(auth)
-          .then(() => {
-            alert("Sign in with the Institute email ID");
-            console.log("successfully signed out");
-          })
-          .catch((err) => {
-            console.log("error in signing out");
-          });
-      } else {
-        console.log(result.user.metadata.lastSignInTime);
-        console.log("successfully signed in");
-        const docRef = doc(db, "Users", user.email);
-        // const docSnap = await getDoc(docRef);
-        const docSnap = await getDoc(docRef);
 
-        if (docSnap.exists()) {
-          await setDoc(doc(db, "Users", user.email), {
-            ...docSnap.data(),
-            Login_Time: result.user.metadata.lastSignInTime,
-          });
-          // console.log(docSnap.data());
-        } else {
-          await setDoc(doc(db, "Users", user.email), {
-            Name: user.displayName,
-            Login_Time: result.user.metadata.lastSignInTime,
-            T1: 0,
-            T2: 0,
-            Score: 0,
-          });
-        }
-        window.location = "/TL-Maze-Mouse/#/Instructions";
-      }
-    })
-    .catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    });
-  // onAuthStateChanged(auth, (user)=>{
-  //   if (user) {
-  //     window.location='/leaderboard';
-  //   }
-  // });
-}
+
 function LandingPage() {
   const navigate = useNavigate();
+  function handleLogin(e) {
+    signInWithPopup(auth, provider)
+      .then(async (result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+        if (!user.email.endsWith("@iith.ac.in")) {
+          signOut(auth)
+            .then(() => {
+              alert("Sign in with the Institute email ID");
+              console.log("successfully signed out");
+            })
+            .catch((err) => {
+              console.log("error in signing out");
+            });
+        } else {
+          console.log(result.user.metadata.lastSignInTime);
+          console.log("successfully signed in");
+          console.log(user.photoURL)
+          const docRef = doc(db, "Users", user.email);
+          const docSnap = await getDoc(docRef);
+
+          if (docSnap.exists()) {
+            await setDoc(doc(db, "Users", user.email), {
+              ...docSnap.data(),
+              Login_Time: result.user.metadata.lastSignInTime,
+            });
+            // console.log(docSnap.data());
+          } else {
+            await setDoc(doc(db, "Users", user.email), {
+              Name: user.displayName,
+              Login_Time: result.user.metadata.lastSignInTime,
+              T1: 0,
+              T2: 0,
+              picURL: user.photoURL,
+              Score: 0,
+            });
+          }
+          // window.location = "/TL-Maze-Mouse/#/Instructions";
+          navigate('/Instructions', { state: { userEmail: user.email } })
+        }
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  }
   return (
     <div className="landingPage">
       <div className="micromouseLogo">
@@ -95,6 +95,7 @@ function LandingPage() {
       </div>
       <div className="playpage-logo">
         <img src={tinkererLogo} alt="tinkerer logo" />
+        {/* <img src={profilePicURL} alt="Profile Pic"/> */}
       </div>
       <div className="lpBox">
         <img src={mmouse} alt="Micro Mouse logo" />
