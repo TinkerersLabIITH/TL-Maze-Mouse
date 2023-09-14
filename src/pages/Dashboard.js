@@ -20,6 +20,7 @@ import { app } from "../firebase.config";
 
 const auth = getAuth();
 const db = getFirestore(app);
+let userEmail_new=null;
 
 //To get the data from the BD by email
 async function getUserByEmail(email) {
@@ -64,7 +65,9 @@ function Dashboard() {
   const elapsedTimeString = new URLSearchParams(location.search).get(
     "elapsedTime"
   );
-  console.log(elapsedTimeString)
+  console.log(useremail);
+  userEmail_new=useremail;
+  console.log(elapsedTimeString);
   const elapsedTime = !isNaN(elapsedTimeString)
     ? parseInt(elapsedTimeString, 10)
     : 0;
@@ -107,17 +110,18 @@ function Dashboard() {
    if(level==1){
     console.log("handleContinueClick called");
     const targetUrl = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(
-      userEmail
+      userEmail_new
     )}&value=${"1"}`;
 
     window.location.href = targetUrl;
    }
+  
   };
   const handleContinueClick2 = () => {
     if(level==2){
     console.log("handleContinueClick2 called");
     const targetUrl2 = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(
-      userEmail
+      userEmail_new
     )}&value=${"2"}`;
     window.location.href = targetUrl2;
     }
