@@ -61,19 +61,20 @@ function Dashboard() {
   const [time1, setTime1] = useState(0);
   const [time2, setTime2] = useState(0);
   const useremail = new URLSearchParams(location.search).get("userEmail");
-  const elapsedTime1String = new URLSearchParams(location.search).get(
-    "elapsedTime1"
+  const elapsedTimeString = new URLSearchParams(location.search).get(
+    "elapsedTime"
   );
-  const elapsedTime1 = !isNaN(elapsedTime1String)
-    ? parseInt(elapsedTime1String, 10)
+  console.log(elapsedTimeString)
+  const elapsedTime = !isNaN(elapsedTimeString)
+    ? parseInt(elapsedTimeString, 10)
     : 0;
 
   //Getting the user time and calculated the scores
   useEffect(() => {
     try {
-      if (elapsedTime1 !== 0) {
+      if (elapsedTime !== 0) {
         console.log("Elapsed time in not 0!!!!!");
-        console.log(elapsedTime1);
+        console.log(elapsedTime);
       }
     } catch (error) {
       console.log(error);
@@ -100,7 +101,7 @@ function Dashboard() {
           console.log("Error", error);
         });
     }
-  }, [userEmail, time1, time2, elapsedTime1, useremail]);
+  }, [userEmail, time1, time2, elapsedTime, useremail]);
 
   const handleContinueClick = () => {
    if(level==1){
