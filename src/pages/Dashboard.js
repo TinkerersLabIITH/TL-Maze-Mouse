@@ -6,10 +6,21 @@ import milanlogo from "../assets/logocream.png";
 import micromouselogo from "../assets/micromouselogo.png";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { getFirestore, collection, query, where, getDoc, updateDoc, doc } from "firebase/firestore";
-import { app } from "../firebase.config"
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  getDoc,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
+import { getAuth,signOut } from "firebase/auth";
+import { app } from "../firebase.config";
 
-const db = getFirestore(app)
+
+const auth = getAuth();
+const db = getFirestore(app);
 
 //To get the data from the BD by email
 async function getUserByEmail(email) {
@@ -25,46 +36,48 @@ async function getUserByEmail(email) {
       console.log("User not found.");
       return null;
     }
-
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }
 
 //To update the data of the user by Email
 async function updateUserByEmail(email, newData) {
   try {
-    const docRef = doc(db, "Users", email)
-    await updateDoc(docRef, newData)
-
+    const docRef = doc(db, "Users", email);
+    await updateDoc(docRef, newData);
   } catch (error) {
-    console.log(error)
-    throw error
+    console.log(error);
+    throw error;
   }
 }
 
 function Dashboard() {
-  const location = useLocation()
-  const userEmail = location.state ? location.state.userEmail : null
+  const location = useLocation();
+  const userEmail = location.state ? location.state.userEmail : null;
   const navigate = useNavigate();
   const [level, setLevel] = useState(1);
   const [score1, setScore1] = useState(0);
   const [score2, setScore2] = useState(0);
-  const [time1, setTime1] = useState(0)
-  const [time2, setTime2] = useState(0)
+  const [time1, setTime1] = useState(0);
+  const [time2, setTime2] = useState(0);
   const useremail = new URLSearchParams(location.search).get("userEmail");
-  const elapsedTime1String = new URLSearchParams(location.search).get("elapsedTime1");
-  const elapsedTime1 = !isNaN(elapsedTime1String) ? parseInt(elapsedTime1String, 10) : 0;
+  const elapsedTime1String = new URLSearchParams(location.search).get(
+    "elapsedTime1"
+  );
+  const elapsedTime1 = !isNaN(elapsedTime1String)
+    ? parseInt(elapsedTime1String, 10)
+    : 0;
 
   //Getting the user time and calculated the scores
   useEffect(() => {
     try {
-      if (elapsedTime1 !== 0){
-        console.log("Elapsed time in not 0")
-        console.log(elapsedTime1)}
-        
+      if (elapsedTime1 !== 0) {
+        console.log("Elapsed time in not 0");
+        console.log(elapsedTime1);
+      }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
     // Fetch user data when userEmail changes
     if (userEmail) {
@@ -75,11 +88,11 @@ function Dashboard() {
             setTime1(userData.T1);
             setTime2(userData.T2);
             if (time1 !== 0) {
-              setScore1(0.3 * (300 - time1) / 3);
+              setScore1((0.3 * (300 - time1)) / 3);
               setLevel(2);
             }
             if (time2 !== 0) {
-              setScore2(0.7 * (300 - time2) / 3);
+              setScore2((0.7 * (300 - time2)) / 3);
               setLevel(0);
             }
           }
@@ -88,26 +101,48 @@ function Dashboard() {
           console.log("Error", error);
         });
     }
-  }, [userEmail, time1, time2, elapsedTime1, useremail])
+  }, [userEmail, time1, time2, elapsedTime1, useremail]);
 
   const handleContinueClick = () => {
-     console.log("handleContinueClick called");
-      const targetUrl = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(userEmail)}&value=${"1"}`;
-  
-      window.location.href = targetUrl;
+    console.log("handleContinueClick called");
+    const targetUrl = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(
+      userEmail
+    )}&value=${"1"}`;
+
+    window.location.href = targetUrl;
   };
   const handleContinueClick2 = () => {
     console.log("handleContinueClick2 called");
-    const targetUrl2 = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(userEmail)}&value=${"2"}`;
+    const targetUrl2 = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(
+      userEmail
+    )}&value=${"2"}`;
     window.location.href = targetUrl2;
-};
+  };
+  function handleLogout() {
+    signOut(auth)
+      .then(() => {
+        // Redirect to landing page after logout
+        navigate("/landing");
+      })
+      .catch((error) => {
+        // Handle logout error
+        console.error("Logout error:", error);
+      });
+  }
   return (
     <div className="dashboard">
-      <div className="playpage-logo">
-        <img src={tinkerlogo} alt="tinkerer logo" />
-      </div>
+       <div className="playpage-logo-ins">
       <div className="playpage-micro">
         <img src={micromouselogo} alt="micromouse logo" />
+      </div>
+        <div className="pink-button" onClick={handleLogout}>
+          <div className="pink-button-inner" style={{ width: "80%" }}>
+            <div className="pink-button-rect" />
+            {/* <img src={userPic} style={{borderRadius}}/> */}
+            <p style={{ fontSize: "0.9rem", width: "50px",paddingLeft:'30px' }}>LOGOUT</p>
+          </div>
+        </div>
+        <img src={tinkerlogo} alt="tinkerer logo" />
       </div>
       <div className="dashboard-stages">
         <div
@@ -123,28 +158,31 @@ function Dashboard() {
               style={
                 level === 1
                   ? {
-                    fontSize: "1.8rem",
-                    width: "max-content",
-                    marginLeft: "30px",
-                    marginRight: "20px",
-                  }
+                      fontSize: "1.8rem",
+                      width: "max-content",
+                      marginLeft: "30px",
+                      marginRight: "20px",
+                    }
                   : {
-                    fontSize: "1.3rem",
-                    width: "max-content",
-                    marginLeft: "45px",
-                    marginRight: "20px",
-                  }
+                      fontSize: "1.3rem",
+                      width: "max-content",
+                      marginLeft: "45px",
+                      marginRight: "20px",
+                    }
               }
             >
               {level === 1 ? "PLAY" : score1}
             </p>
-            <div className="pink-btn-circle" onClick={handleContinueClick2}>
-              <div className="pink-btn-c-i" >1</div>
+            <div
+              className="pink-btn-circle"
+              onClick={() => handleContinueClick}
+            >
+              <div className="pink-btn-c-i">1</div>
             </div>
           </div>
         </div>
         <div
-          className="pink-button" 
+          className="pink-button"
           style={level === 1 ? { opacity: 0.5 } : { opacity: 1 }}
         >
           <div className="pink-button-inner">
@@ -156,17 +194,17 @@ function Dashboard() {
               style={
                 level === 2
                   ? {
-                    fontSize: "1.8rem",
-                    width: "max-content",
-                    marginLeft: "30px",
-                    marginRight: "20px",
-                  }
+                      fontSize: "1.8rem",
+                      width: "max-content",
+                      marginLeft: "30px",
+                      marginRight: "20px",
+                    }
                   : {
-                    fontSize: "1.3rem",
-                    width: "max-content",
-                    marginLeft: "45px",
-                    marginRight: "20px",
-                  }
+                      fontSize: "1.3rem",
+                      width: "max-content",
+                      marginLeft: "45px",
+                      marginRight: "20px",
+                    }
               }
             >
               {level === 2 ? "PLAY" : score2}

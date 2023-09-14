@@ -39,14 +39,14 @@ function Instructions() {
         <img src={micromouseLogo} alt="The logo of MicroMouse" />
       </div>
       <div className="playpage-logo-ins">
+        <img src={tinkererLogo} alt="tinkerer logo" />
         <div className="pink-button" onClick={handleLogout}>
           <div className="pink-button-inner" style={{ width: "80%" }}>
             <div className="pink-button-rect" />
             {/* <img src={userPic} style={{borderRadius}}/> */}
-            <p style={{ fontSize: "1rem", width: "max-content" }}>LOGOUT</p>
+            <p style={{ fontSize: "0.9rem", width: "50px",paddingLeft:'30px' }}>LOGOUT</p>
           </div>
         </div>
-        <img src={tinkererLogo} alt="tinkerer logo" />
       </div>
       <div className="lpBox">
         <img src={mmouse} alt="Micro Mouse logo" />
