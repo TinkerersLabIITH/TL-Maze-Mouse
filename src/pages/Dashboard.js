@@ -62,7 +62,7 @@ function Dashboard() {
       if (elapsedTime1 !== 0){
         console.log("Elapsed time in not 0")
         console.log(elapsedTime1)
-      console.log(userEmail)}
+      console.log(useremail)}
         
     } catch (error) {
       console.log(error)
