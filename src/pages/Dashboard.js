@@ -41,6 +41,7 @@ function Dashboard() {
   const useremail = new URLSearchParams(location.search).get("userEmail");
   const elapsedTime = new URLSearchParams(location.search).get("elapsedTime");
   getUserByEmail(userEmail)
+  
   .then((userData) => {
     if (userData !== null) {
       console.log("User Data: ", userData)
@@ -50,7 +51,17 @@ function Dashboard() {
     console.log("Error", error)
   })
 
-
+  const handleContinueClick = () => {
+     console.log("handleContinueClick called");
+      const targetUrl = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(userEmail)}&value=${"1"}`;
+  
+      window.location.href = targetUrl;
+  };
+  const handleContinueClick2 = () => {
+    console.log("handleContinueClick2 called");
+    const targetUrl2 = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(userEmail)}&value=${"2"}`;
+    window.location.href = targetUrl2;
+};
   return (
     <div className="dashboard">
       <div className="playpage-logo">
@@ -88,8 +99,8 @@ function Dashboard() {
             >
               {level === 1 ? "PLAY" : time}
             </p>
-            <div className="pink-btn-circle">
-              <div className="pink-btn-c-i">1</div>
+            <div className="pink-btn-circle" >
+              <div className="pink-btn-c-i" onClick={handleContinueClick}>1</div>
             </div>
           </div>
         </div>
@@ -121,7 +132,7 @@ function Dashboard() {
             >
               {level === 2 ? "PLAY" : time}
             </p>
-            <div className="pink-btn-circle">
+            <div className="pink-btn-circle" onClick={handleContinueClick2}>
               <div className="pink-btn-c-i">2</div>
             </div>
           </div>
