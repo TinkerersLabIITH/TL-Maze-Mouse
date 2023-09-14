@@ -148,7 +148,7 @@ function Dashboard() {
       </div>
       <div className="dashboard-stages">
         <div
-          className="pink-button" onClick={() => handleContinueClick}
+          className="pink-button" onClick={handleContinueClick}
           style={level === 2 ? { opacity: 0.7 } : { opacity: 1 }}
         >
           <div className="pink-button-inner">
