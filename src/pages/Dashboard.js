@@ -72,7 +72,7 @@ function Dashboard() {
       </div>
       <div className="dashboard-stages">
         <div
-          className="pink-button"
+          className="pink-button" onClick={()=>handleContinueClick}
           style={level === 2 ? { opacity: 0.7 } : { opacity: 1 }}
         >
           <div className="pink-button-inner">
@@ -100,12 +100,12 @@ function Dashboard() {
               {level === 1 ? "PLAY" : time}
             </p>
             <div className="pink-btn-circle" >
-              <div className="pink-btn-c-i" onClick={handleContinueClick}>1</div>
+              <div className="pink-btn-c-i" >1</div>
             </div>
           </div>
         </div>
         <div
-          className="pink-button"
+          className="pink-button" onClick={()=>handleContinueClick}
           style={level === 1 ? { opacity: 0.5 } : { opacity: 1 }}
         >
           <div className="pink-button-inner">
