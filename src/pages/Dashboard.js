@@ -53,14 +53,14 @@ async function updateUserByEmail(email, newData) {
 
 function Dashboard() {
   const location = useLocation();
-  const userEmail = location.state ? location.state.userEmail : null;
+  // const userEmail = location.state ? location.state.userEmail : null;
   const navigate = useNavigate();
   const [level, setLevel] = useState(1);
   const [score1, setScore1] = useState(0);
   const [score2, setScore2] = useState(0);
   const [time1, setTime1] = useState(0);
   const [time2, setTime2] = useState(0);
-  const useremail = new URLSearchParams(location.search).get("userEmail");
+  const userEmail = new URLSearchParams(location.search).get("userEmail");
   const elapsedTimeString = new URLSearchParams(location.search).get(
     "elapsedTime"
   );
@@ -101,7 +101,7 @@ function Dashboard() {
           console.log("Error", error);
         });
     }
-  }, [userEmail, time1, time2, elapsedTime, useremail]);
+  }, [userEmail, time1, time2, elapsedTime]);
 
   const handleContinueClick = () => {
    if(level==1){
