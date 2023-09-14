@@ -15,9 +15,8 @@ import {
   updateDoc,
   doc,
 } from "firebase/firestore";
-import { getAuth,signOut } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import { app } from "../firebase.config";
-
 
 const auth = getAuth();
 const db = getFirestore(app);
@@ -135,18 +134,22 @@ function Dashboard() {
   }
   return (
     <div className="dashboard">
-       <div className="playpage-logo-ins">
-      <div className="playpage-micro">
-        <img src={micromouselogo} alt="micromouse logo" />
-      </div>
+      <div className="playpage-logo-ins">
         <div className="pink-button" onClick={handleLogout}>
           <div className="pink-button-inner" style={{ width: "80%" }}>
             <div className="pink-button-rect" />
             {/* <img src={userPic} style={{borderRadius}}/> */}
-            <p style={{ fontSize: "0.9rem", width: "50px",paddingLeft:'30px' }}>LOGOUT</p>
+            <p
+              style={{ fontSize: "0.9rem", width: "50px", paddingLeft: "30px" }}
+            >
+              LOGOUT
+            </p>
           </div>
         </div>
         <img src={tinkerlogo} alt="tinkerer logo" />
+      </div>
+      <div className="playpage-micro">
+        <img src={micromouselogo} alt="micromouse logo" />
       </div>
       <div className="dashboard-stages">
         <div
@@ -177,16 +180,14 @@ function Dashboard() {
             >
               {level === 1 ? "PLAY" : score1}
             </p>
-            <div
-              className="pink-btn-circle"
-              
-            >
+            <div className="pink-btn-circle">
               <div className="pink-btn-c-i">1</div>
             </div>
           </div>
         </div>
         <div
-          className="pink-button" onClick={handleContinueClick2}
+          className="pink-button"
+          onClick={handleContinueClick2}
           style={level === 1 ? { opacity: 0.5 } : { opacity: 1 }}
         >
           <div className="pink-button-inner">
@@ -211,9 +212,9 @@ function Dashboard() {
                     }
               }
             >
-              {level === 2 ? "PLAY" : score2}
+              {level === 2 ? "PLAY" : score2 }
             </p>
-            <div className="pink-btn-circle" >
+            <div className="pink-btn-circle">
               <div className="pink-btn-c-i">2</div>
             </div>
           </div>
