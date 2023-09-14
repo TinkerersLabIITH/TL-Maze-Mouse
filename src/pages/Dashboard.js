@@ -104,19 +104,23 @@ function Dashboard() {
   }, [userEmail, time1, time2, elapsedTime1, useremail]);
 
   const handleContinueClick = () => {
+    if(level==1){
     console.log("handleContinueClick called");
     const targetUrl = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(
       userEmail
     )}&value=${"1"}`;
 
     window.location.href = targetUrl;
+  }
   };
   const handleContinueClick2 = () => {
+if(level==2){
     console.log("handleContinueClick2 called");
     const targetUrl2 = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(
       userEmail
     )}&value=${"2"}`;
     window.location.href = targetUrl2;
+  }
   };
   function handleLogout() {
     signOut(auth)
@@ -146,7 +150,7 @@ function Dashboard() {
       </div>
       <div className="dashboard-stages">
         <div
-          className="pink-button"
+          className="pink-button" onClick={() => handleContinueClick}
           style={level === 2 ? { opacity: 0.7 } : { opacity: 1 }}
         >
           <div className="pink-button-inner">
@@ -175,14 +179,14 @@ function Dashboard() {
             </p>
             <div
               className="pink-btn-circle"
-              onClick={() => handleContinueClick}
+              
             >
               <div className="pink-btn-c-i">1</div>
             </div>
           </div>
         </div>
         <div
-          className="pink-button"
+          className="pink-button" onClick={handleContinueClick2}
           style={level === 1 ? { opacity: 0.5 } : { opacity: 1 }}
         >
           <div className="pink-button-inner">
@@ -209,7 +213,7 @@ function Dashboard() {
             >
               {level === 2 ? "PLAY" : score2}
             </p>
-            <div className="pink-btn-circle" onClick={handleContinueClick2}>
+            <div className="pink-btn-circle" >
               <div className="pink-btn-c-i">2</div>
             </div>
           </div>
