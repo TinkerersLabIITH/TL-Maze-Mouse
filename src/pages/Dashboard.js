@@ -54,6 +54,7 @@ async function updateUserByEmail(email, newData) {
 function Dashboard() {
   const location = useLocation();
   const userEmail = location.state ? location.state.userEmail : null;
+  console.log(userEmail);
   const navigate = useNavigate();
   const [level, setLevel] = useState(1);
   const [score1, setScore1] = useState(0);
@@ -64,7 +65,8 @@ function Dashboard() {
   const elapsedTimeString = new URLSearchParams(location.search).get(
     "elapsedTime"
   );
-  console.log(elapsedTimeString)
+  console.log(useremail);
+  console.log(elapsedTimeString);
   const elapsedTime = !isNaN(elapsedTimeString)
     ? parseInt(elapsedTimeString, 10)
     : 0;
@@ -112,6 +114,7 @@ function Dashboard() {
 
     window.location.href = targetUrl;
    }
+  
   };
   const handleContinueClick2 = () => {
     if(level==2){
