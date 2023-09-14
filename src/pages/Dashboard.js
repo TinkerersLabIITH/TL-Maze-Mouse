@@ -8,7 +8,9 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
 import { app } from "../firebase.config"
-
+const location = useLocation();
+const userEmail = new URLSearchParams(location.search).get("userEmail");
+const elapsedTime = new URLSearchParams(location.search).get("elapsedTime");
 const db = getFirestore(app)
 
 async function getUserByEmail(email) {
