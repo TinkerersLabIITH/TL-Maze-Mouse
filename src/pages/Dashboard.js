@@ -4,25 +4,26 @@ import mazebg from "../assets/maze.svg";
 import tinkerlogo from "../assets/tinkererlogo.svg";
 import milanlogo from "../assets/logocream.png";
 import micromouselogo from "../assets/micromouselogo.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
+import { getFirestore, collection, query, where, getDoc, updateDoc, doc } from "firebase/firestore";
 import { app } from "../firebase.config"
 
 const db = getFirestore(app)
 
+//To get the data from the BD by email
 async function getUserByEmail(email) {
   try {
-    const userCollection = collection(db, "Users")
-    const q = query(userCollection, where("email", "==", email))
-    const querySnapshot = await getDocs(q)
+    const userDocRef = doc(db, "Users", email);
 
-    if (!querySnapshot.empty) {
-      const userDoc = querySnapshot.docs[0]
-      return userDoc.data()
+    const docSnapshot = await getDoc(userDocRef);
+
+    if (docSnapshot.exists()) {
+      const userData = docSnapshot.data();
+      return userData;
     } else {
-      console.log("User not found")
-      return null
+      console.log("User not found.");
+      return null;
     }
 
   } catch (error) {
@@ -30,25 +31,63 @@ async function getUserByEmail(email) {
   }
 }
 
+//To update the data of the user by Email
+async function updateUserByEmail(email, newData) {
+  try {
+    const docRef = doc(db, "Users", email)
+    await updateDoc(docRef, newData)
 
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
 
 function Dashboard() {
   const location = useLocation()
   const userEmail = location.state ? location.state.userEmail : null
   const navigate = useNavigate();
   const [level, setLevel] = useState(1);
-  const [time, setTime] = useState("00:00:00");
+  const [score1, setScore1] = useState(0);
+  const [score2, setScore2] = useState(0);
+  const [time1, setTime1] = useState(0)
+  const [time2, setTime2] = useState(0)
   const useremail = new URLSearchParams(location.search).get("userEmail");
-  const elapsedTime = new URLSearchParams(location.search).get("elapsedTime");
-  getUserByEmail(userEmail)
-  .then((userData) => {
-    if (userData !== null) {
-      console.log("User Data: ", userData)
+  const elapsedTime1String = new URLSearchParams(location.search).get("elapsedTime1");
+  const elapsedTime1 = !isNaN(elapsedTime1String) ? parseInt(elapsedTime1String, 10) : 0;
+
+  //Getting the user time and calculated the scores
+  useEffect(() => {
+    try {
+      if (elapsedTime1 !== 0){
+        console.log("Elapsed time in not 0")
+        console.log(elapsedTime1)}
+    } catch (error) {
+      console.log(error)
     }
-  })
-  .catch((error) => {
-    console.log("Error", error)
-  })
+    // Fetch user data when userEmail changes
+    if (userEmail) {
+      getUserByEmail(userEmail)
+        .then((userData) => {
+          if (userData !== null) {
+            console.log("User Time 1: ", userData.T1);
+            setTime1(userData.T1);
+            setTime2(userData.T2);
+            if (time1 !== 0) {
+              setScore1(0.3 * (300 - time1) / 3);
+              setLevel(2);
+            }
+            if (time2 !== 0) {
+              setScore2(0.7 * (300 - time2) / 3);
+              setLevel(0);
+            }
+          }
+        })
+        .catch((error) => {
+          console.log("Error", error);
+        });
+    }
+  }, [userEmail, time1, time2, elapsedTime1, useremail])
 
 
   return (
@@ -86,7 +125,7 @@ function Dashboard() {
                   }
               }
             >
-              {level === 1 ? "PLAY" : time}
+              {level === 1 ? "PLAY" : score1}
             </p>
             <div className="pink-btn-circle">
               <div className="pink-btn-c-i">1</div>
@@ -119,7 +158,7 @@ function Dashboard() {
                   }
               }
             >
-              {level === 2 ? "PLAY" : time}
+              {level === 2 ? "PLAY" : score2}
             </p>
             <div className="pink-btn-circle">
               <div className="pink-btn-c-i">2</div>

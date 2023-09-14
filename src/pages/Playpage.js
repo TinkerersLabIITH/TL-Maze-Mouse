@@ -3,11 +3,14 @@ import mazebg from "../assets/maze.svg";
 import tinkerlogo from "../assets/tinkererlogo.svg";
 import milanlogo from "../assets/logocream.png";
 import micromouselogo from "../assets/micromouselogo.png";
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useLocation} from 'react-router-dom'
 // import Button from "../components/Button";
 
 function PlayPage() {
   const navigate = useNavigate();
+  const location = useLocation()
+  const userEmail = location.state ? location.state.userEmail : null
+  console.log(userEmail)
   return (
     <>
       <div className="playpage">
