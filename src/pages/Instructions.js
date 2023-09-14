@@ -1,25 +1,51 @@
-import "../kaif.css"
-import { useNavigate, useLocation } from "react-router-dom"
-import {useState} from "react"
-import tinkererLogo from "../assets/tinkererlogo.svg"
-import micromouseLogo from "../assets/maze.svg"
-import mmouse from "../assets/micromouselogo.png"
+import "../kaif.css";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
+import tinkererLogo from "../assets/tinkererlogo.svg";
+import micromouseLogo from "../assets/maze.svg";
+import mmouse from "../assets/micromouselogo.png";
 
-// import gifLogo from "../assets/logoGif.mp4"
+import { getAuth,signOut } from "firebase/auth";
+
+const auth = getAuth();
+
 function Instructions() {
-  const location = useLocation()
+  const location = useLocation();
   const navigate = useNavigate();
-  const userEmail = location.state ? location.state.userEmail : null
-  console.log(userEmail)
+  const userEmail = location.state ? location.state.userEmail : null;
+  const userPic = location.state ? location.state.userPic : null;
+
+  console.log(userEmail);
   const handleContinueClick = () => {
-      navigate('/Playpage', {state: {userEmail: userEmail}})
+    navigate("/Playpage", {
+      state: { userEmail: userEmail, userPic: userPic },
+    });
   };
+
+  function handleLogout() {
+    signOut(auth)
+      .then(() => {
+        // Redirect to landing page after logout
+        navigate("/landing");
+      })
+      .catch((error) => {
+        // Handle logout error
+        console.error("Logout error:", error);
+      });
+  }
   return (
     <div className="landingPage">
       <div className="micromouseLogo">
-        <img src={micromouseLogo} alt="The logo of MicroMouse"/>
+        <img src={micromouseLogo} alt="The logo of MicroMouse" />
       </div>
-      <div className="playpage-logo">
+      <div className="playpage-logo-ins">
+        <div className="pink-button" onClick={handleLogout}>
+          <div className="pink-button-inner" style={{ width: "80%" }}>
+            <div className="pink-button-rect" />
+            {/* <img src={userPic} style={{borderRadius}}/> */}
+            <p style={{ fontSize: "1rem", width: "max-content" }}>LOGOUT</p>
+          </div>
+        </div>
         <img src={tinkererLogo} alt="tinkerer logo" />
       </div>
       <div className="lpBox">
@@ -28,7 +54,7 @@ function Instructions() {
         <p className="headingMMIp">HI PLAYER!!</p>
         <p className="paraMMIp">INSTRUCTIONS</p>
         <p className="paraMMIpSmall">loremipsum</p>
-       
+
         <div className="playpage-buttons" style={{ marginTop: "10vh" }}>
           <div className="pink-button" onClick={handleContinueClick}>
             <div className="pink-button-inner" style={{ width: "90%" }}>
@@ -39,10 +65,9 @@ function Instructions() {
             </div>
           </div>
         </div>
-       
       </div>
     </div>
-  )
+  );
 }
 
 export default Instructions;

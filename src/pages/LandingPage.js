@@ -28,7 +28,6 @@ const provider = new GoogleAuthProvider();
 const auth = getAuth();
 const db = getFirestore(app);
 
-
 function LandingPage() {
   const navigate = useNavigate();
   function handleLogin(e) {
@@ -53,7 +52,7 @@ function LandingPage() {
         } else {
           console.log(result.user.metadata.lastSignInTime);
           console.log("successfully signed in");
-          console.log(user.photoURL)
+          console.log(user.photoURL);
           const docRef = doc(db, "Users", user.email);
           const docSnap = await getDoc(docRef);
 
@@ -62,13 +61,17 @@ function LandingPage() {
               ...docSnap.data(),
               Login_Time: result.user.metadata.lastSignInTime,
             });
-            const userData = docSnap.data()
-            const score = userData.Score || 0
-            console.log("User is in DB with score of ", score)
-            if(score === 0){
-              navigate('/Instructions', { state: { userEmail: user.email } })
-            }else{
-              navigate('/dashboard', {state: {userEmail: user.email}})
+            const userData = docSnap.data();
+            const score = userData.Score || 0;
+            console.log("User is in DB with score of ", score);
+            if (score === 0) {
+              navigate("/Instructions", {
+                state: { userEmail: user.email, userPic: user.photoURL },
+              });
+            } else {
+              navigate("/dashboard", {
+                state: { userEmail: user.email, userPic: user.photoURL },
+              });
             }
           } else {
             await setDoc(doc(db, "Users", user.email), {

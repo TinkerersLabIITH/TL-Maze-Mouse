@@ -417,4 +417,18 @@ body {
   margin-top: 13vh;
 }
 
+.playpage-logo-ins {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8vh;
+  /* z-index: 2; */
+}
+
+.playpage-logo-ins img {
+  width: 60px;
+}
+
 }
