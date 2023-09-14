@@ -29,7 +29,7 @@ var temp = [];
 const initialSnapshot = await getDocs(q);
 initialSnapshot.forEach((e) => {
   temp.push(e.data());
-  console.log(e.data());
+  // console.log(e.data());
 });
 
 function LandingPage() {

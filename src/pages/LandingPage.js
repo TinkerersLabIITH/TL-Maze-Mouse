@@ -62,6 +62,16 @@ function LandingPage() {
               ...docSnap.data(),
               Login_Time: result.user.metadata.lastSignInTime,
             });
+            const userData = docSnap.data()
+            const score = userData.Score || 0
+            console.log("User is in DB with score of ", score)
+            if(score === 0){
+              navigate('/Instructions', { state: { userEmail: user.email } })
+              console.log("Score is 0")
+            }else{
+              navigate('/dashboard', {state: {userEmail: user.email}})
+              console.log("Score is not 0")
+            }
             // console.log(docSnap.data());
           } else {
             await setDoc(doc(db, "Users", user.email), {
@@ -74,7 +84,7 @@ function LandingPage() {
             });
           }
           // window.location = "/TL-Maze-Mouse/#/Instructions";
-          navigate('/Instructions', { state: { userEmail: user.email } })
+          // navigate('/Instructions', { state: { userEmail: user.email } })
         }
       })
       .catch((error) => {

@@ -5,12 +5,51 @@ import tinkerlogo from "../assets/tinkererlogo.svg";
 import milanlogo from "../assets/logocream.png";
 import micromouselogo from "../assets/micromouselogo.png";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
+import { app } from "../firebase.config"
+
+const db = getFirestore(app)
+
+async function getUserByEmail(email) {
+  try {
+    const userCollection = collection(db, "Users")
+    const q = query(userCollection, where("email", "==", email))
+    const querySnapshot = await getDocs(q)
+
+    if (!querySnapshot.empty) {
+      const userDoc = querySnapshot.docs[0]
+      return userDoc.data()
+    } else {
+      console.log("User not found")
+      return null
+    }
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
 
 function Dashboard() {
+  const location = useLocation()
+  const userEmail = location.state ? location.state.userEmail : null
   const navigate = useNavigate();
   const [level, setLevel] = useState(1);
   const [time, setTime] = useState("00:00:00");
+
+  getUserByEmail(userEmail)
+  .then((userData) => {
+    if (userData !== null) {
+      console.log("User Data: ", userData)
+    }
+  })
+  .catch((error) => {
+    console.log("Error", error)
+  })
+
+
   return (
     <div className="dashboard">
       <div className="playpage-logo">
@@ -33,17 +72,17 @@ function Dashboard() {
               style={
                 level === 1
                   ? {
-                      fontSize: "1.8rem",
-                      width: "max-content",
-                      marginLeft: "30px",
-                      marginRight: "20px",
-                    }
+                    fontSize: "1.8rem",
+                    width: "max-content",
+                    marginLeft: "30px",
+                    marginRight: "20px",
+                  }
                   : {
-                      fontSize: "1.3rem",
-                      width: "max-content",
-                      marginLeft: "45px",
-                      marginRight: "20px",
-                    }
+                    fontSize: "1.3rem",
+                    width: "max-content",
+                    marginLeft: "45px",
+                    marginRight: "20px",
+                  }
               }
             >
               {level === 1 ? "PLAY" : time}
@@ -66,17 +105,17 @@ function Dashboard() {
               style={
                 level === 2
                   ? {
-                      fontSize: "1.8rem",
-                      width: "max-content",
-                      marginLeft: "30px",
-                      marginRight: "20px",
-                    }
+                    fontSize: "1.8rem",
+                    width: "max-content",
+                    marginLeft: "30px",
+                    marginRight: "20px",
+                  }
                   : {
-                      fontSize: "1.3rem",
-                      width: "max-content",
-                      marginLeft: "45px",
-                      marginRight: "20px",
-                    }
+                    fontSize: "1.3rem",
+                    width: "max-content",
+                    marginLeft: "45px",
+                    marginRight: "20px",
+                  }
               }
             >
               {level === 2 ? "PLAY" : time}

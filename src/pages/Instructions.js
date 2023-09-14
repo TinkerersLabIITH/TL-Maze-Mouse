@@ -10,6 +10,7 @@ function Instructions() {
   const location = useLocation()
   const navigate = useNavigate();
   const userEmail = location.state ? location.state.userEmail : null
+  console.log(userEmail)
   const handleContinueClick = () => {
     if (userEmail) {
       const targetUrl = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(userEmail)}`;
