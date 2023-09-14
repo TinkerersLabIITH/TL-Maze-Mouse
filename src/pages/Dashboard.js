@@ -73,7 +73,7 @@ function Dashboard() {
   useEffect(() => {
     try {
       if (elapsedTime1 !== 0) {
-        console.log("Elapsed time in not 0");
+        console.log("Elapsed time in not 0!!!!!");
         console.log(elapsedTime1);
       }
     } catch (error) {
@@ -104,21 +104,23 @@ function Dashboard() {
   }, [userEmail, time1, time2, elapsedTime1, useremail]);
 
   const handleContinueClick = () => {
-   
+   if(level==1){
     console.log("handleContinueClick called");
     const targetUrl = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(
       userEmail
     )}&value=${"1"}`;
 
     window.location.href = targetUrl;
- 
+   }
   };
   const handleContinueClick2 = () => {
+    if(level==2){
     console.log("handleContinueClick2 called");
     const targetUrl2 = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(
       userEmail
     )}&value=${"2"}`;
     window.location.href = targetUrl2;
+    }
   };
   function handleLogout() {
     signOut(auth)
