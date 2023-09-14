@@ -84,7 +84,7 @@ function Dashboard() {
       getUserByEmail(userEmail)
         .then((userData) => {
           if (userData !== null) {
-            console.log("User Time 1: ", userData.T1);
+            console.log("User Time : ", userData.T1);
             setTime1(userData.T1);
             setTime2(userData.T2);
             if (time1 !== 0) {
