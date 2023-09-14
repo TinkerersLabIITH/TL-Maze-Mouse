@@ -138,7 +138,7 @@ function Dashboard() {
             >
               {level === 1 ? "PLAY" : score1}
             </p>
-            <div className="pink-btn-circle" onClick={handleContinueClick}>
+            <div className="pink-btn-circle" onClick={handleContinueClick2}>
               <div className="pink-btn-c-i" >1</div>
             </div>
           </div>
