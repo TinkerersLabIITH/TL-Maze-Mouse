@@ -80,9 +80,11 @@ function Dashboard() {
       }
       else if(user.T1===0 && value===1){
         level=2;
+        setScore1(user.Score);
       }
       else if (user.T1 !== 0 && user.T2===0) {
         level = 2;
+        setScore1(user.Score);
       }
       else {
         setScore1(Math.round((0.3 * (300 - user.T1)) / 3));
