@@ -19,13 +19,13 @@ import {
 } from "firebase/firestore";
 import { app } from "../firebase.config";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // import gifLogo from "../assets/logoGif.mp4"
 
 const db = getFirestore(app);
 const scoresRef = collection(db, "Users");
 const q = query(scoresRef, orderBy("Score", "desc"), limit("10"));
-const userEmail = new URLSearchParams(location.search).get("userEmail");
+
 var temp = [];
 const initialSnapshot = await getDocs(q);
 initialSnapshot.forEach((e) => {
@@ -35,6 +35,8 @@ initialSnapshot.forEach((e) => {
 
 function LandingPage() {
   const navigate = useNavigate();
+  const location = useLocation()
+  const userEmail = new URLSearchParams(location.search).get("userEmail");
   const [scores, setScores] = useState(temp);
   onSnapshot(q, (snapshot) => {
     temp = [];
