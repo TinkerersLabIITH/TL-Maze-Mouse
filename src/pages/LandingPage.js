@@ -69,9 +69,10 @@ function LandingPage() {
                 state: { userEmail: user.email, userPic: user.photoURL },
               });
             } else {
-              navigate("/dashboard", {
-                state: { userEmail: user.email, userPic: user.photoURL },
-              });
+              const targetUrl = `https://tinkererslabiith.github.io/TL-Maze-Mouse/#/dashboard?userEmail=${encodeURIComponent(
+                userEmail
+              )}`;
+              window.location.href = targetUrl;
             }
           } else {
             await setDoc(doc(db, "Users", user.email), {
