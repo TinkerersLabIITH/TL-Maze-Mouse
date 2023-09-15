@@ -17,7 +17,6 @@ import { app } from "../firebase.config";
 
 const auth = getAuth();
 const db = getFirestore(app);
-let userEmail_new=null;
 
 //To get the data from the BD by email
 async function getUserByEmail(email) {
@@ -77,39 +76,31 @@ function Dashboard() {
     } catch (error) {
       console.log(error);
     }
-    if(elapsedTime === -1){
+    if(elapsedTime === -1 || level === 0){
       setLevel(1)
       console.log("Level is ", level)
     }
     // Fetch user data when userEmail changes
     if (userEmail && elapsedTime !== -1) {
-      if(level === 0){
-        setLevel(1)
-        console.log("Current level is ", level)
-      }
       getUserByEmail(userEmail)
         .then((userData) => {
           if (userData !== null) {
-            console.log("User Time : ", userData.T1);
-            if(level===1){
+            console.log("User Time : ", userData.T1)
+            if(level===1 && userData.T1 === 0){
               setTime1(elapsedTime)
+              setScore1(Math.round((0.3 * (300 - time1)) / 3))
+              updateUserByEmail(userEmail, {T1: elapsedTime})
+              setLevel(2)
+              console.log("score 1", score1, "and level is ", level)
+
+            }else if(level === 1 && userData.T1 !== 0){
+              setLevel(2)
             }
             if(userData.T1 !== 0 && userData.T2 === 0){
               setTime2(elapsedTime)
-              setLevel(2)
-            }
-            if (time1 !== 0 && userData.T1 === 0) {
-              setScore1(Math.round((0.3 * (300 - time1)) / 3));
-              console.log("score 1", score1);
-              updateUserByEmail(userEmail, {T1: elapsedTime})
-              setLevel(2);
-              console.log(level);
-            }
-            if (time2 !== 0) {
-              setScore2((0.7 * (300 - time2)) / 3);
-              console.log("score 2", score2)
+              setScore2((0.7 * (300 - time2)) / 3)
               updateUserByEmail(userEmail, {T2: elapsedTime})
-              setLevel(3);
+              setLevel(3)
             }
           }
         })
@@ -117,7 +108,7 @@ function Dashboard() {
           console.log("Error", error);
         });
     }
-  }, [userEmail, elapsedTime,time1, time2, level]);
+  }, [userEmail, elapsedTime, level]);
 
   const handleContinueClick = () => {
    if(level===1){
