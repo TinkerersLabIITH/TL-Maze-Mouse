@@ -70,8 +70,7 @@ function Dashboard() {
   useEffect(() => {
     try {
       if (elapsedTime !== 0) {
-        console.log("Elapsed time in not 0!!!!!");
-        console.log(elapsedTime);
+        console.log("Elapsed Time recorded: ",elapsedTime);
       }
     } catch (error) {
       console.log(error);
@@ -96,7 +95,7 @@ function Dashboard() {
             }else if(level === 1 && userData.T1 !== 0){
               setLevel(2)
             }
-            if(userData.T1 !== 0 && userData.T2 === 0){
+            if(level === 2 && userData.T2 === 0){
               setTime2(elapsedTime)
               setScore2((0.7 * (300 - time2)) / 3)
               updateUserByEmail(userEmail, {T2: elapsedTime})
@@ -108,7 +107,7 @@ function Dashboard() {
           console.log("Error", error);
         });
     }
-  }, [userEmail, elapsedTime]);
+  }, [userEmail, elapsedTime, level]);
 
   const handleContinueClick = () => {
    if(level===1){
