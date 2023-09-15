@@ -56,7 +56,7 @@ function Dashboard() {
   const location = useLocation();
   //const userEmail = location.state ? location.state.userEmail : null;
   const navigate = useNavigate();
-  const [level, setLevel] = useState(1);
+  const [level, setLevel] = useState(0);
   const [score1, setScore1] = useState(0);
   const [score2, setScore2] = useState(0);
   const [time1, setTime1] = useState(0);
@@ -88,6 +88,9 @@ function Dashboard() {
         .then((userData) => {
           if (userData !== null) {
             console.log("User Time : ", userData.T1);
+            if(level==0){
+              setLevel(1);
+            }
             if(level==1){
               setTime1(elapsedTime)
               userData.T1=elapsedTime;
@@ -99,13 +102,11 @@ function Dashboard() {
               console.log(level);
               setLevel(2);
               console.log(level);
+
             }
             if (time2 !== 0) {
               setScore2((0.7 * (300 - time2)) / 3);
-              console.log(score2);
-              console.log(level);
               setLevel(0);
-              console.log(level);
             }
           }
         })
