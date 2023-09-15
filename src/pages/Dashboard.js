@@ -54,7 +54,7 @@ async function updateUserByEmail(email, newData) {
 
 function Dashboard() {
   const location = useLocation();
-  // const userEmail = location.state ? location.state.userEmail : null;
+  //const userEmail = location.state ? location.state.userEmail : null;
   const navigate = useNavigate();
   const [level, setLevel] = useState(1);
   const [score1, setScore1] = useState(0);
@@ -65,8 +65,8 @@ function Dashboard() {
   const elapsedTimeString = new URLSearchParams(location.search).get(
     "elapsedTime"
   );
-  console.log(useremail);
-  userEmail_new=useremail;
+  console.log(userEmail);
+  userEmail_new=userEmail;
   console.log(elapsedTimeString);
   const elapsedTime = !isNaN(elapsedTimeString)
     ? parseInt(elapsedTimeString, 10)
@@ -83,7 +83,7 @@ function Dashboard() {
       console.log(error);
     }
     // Fetch user data when userEmail changes
-    if (userEmail) {
+    if (userEmail_new) {
       getUserByEmail(userEmail)
         .then((userData) => {
           if (userData !== null) {
