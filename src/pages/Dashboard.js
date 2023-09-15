@@ -88,6 +88,9 @@ function Dashboard() {
         setLevel(1)
         console.log("Current level is ", level)
       }
+      if(level === 2 && time1 === 0){
+        setTime2(elapsedTime)
+      }
       getUserByEmail(userEmail)
         .then((userData) => {
           if (userData !== null) {
@@ -96,9 +99,6 @@ function Dashboard() {
               setTime1(elapsedTime)
               userData.T1=elapsedTime;
             }
-            if(level === 2){
-              setTime2(elapsedTime)
-            }
             if (time1 !== 0 && level === 1) {
               setScore1(Math.round((0.3 * (300 - time1)) / 3));
               console.log("score 1", score1);
@@ -106,7 +106,7 @@ function Dashboard() {
               console.log(level);
 
             }
-            if (time2 !== 0 && level === 2) {
+            if (time2 !== 0) {
               setScore2((0.7 * (300 - time2)) / 3);
               console.log("score 2", score2)
               setLevel(3);
