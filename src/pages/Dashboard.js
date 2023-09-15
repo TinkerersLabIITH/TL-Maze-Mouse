@@ -108,7 +108,7 @@ function Dashboard() {
           console.log("Error", error);
         });
     }
-  }, [userEmail, elapsedTime, level]);
+  }, [userEmail, elapsedTime]);
 
   const handleContinueClick = () => {
    if(level===1){
