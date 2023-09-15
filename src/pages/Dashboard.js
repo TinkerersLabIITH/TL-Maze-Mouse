@@ -60,6 +60,7 @@ function Dashboard() {
   const [time2, setTime2] = useState(0);
   const userEmail = new URLSearchParams(location.search).get("userEmail");
   console.log(userEmail);
+  userEmail_new=userEmail;
   const elapsedTimeString = new URLSearchParams(location.search).get(
     "elapsedTime"
   );
