@@ -70,7 +70,7 @@ function LandingPage() {
               });
             } else {
               const targetUrl = `https://tinkererslabiith.github.io/TL-Maze-Mouse/#/dashboard?userEmail=${encodeURIComponent(
-                userEmail
+                user.email
               )}`;
               window.location.href = targetUrl;
             }
