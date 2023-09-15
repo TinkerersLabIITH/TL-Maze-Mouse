@@ -96,17 +96,20 @@ function Dashboard() {
               setTime1(elapsedTime)
               userData.T1=elapsedTime;
             }
-            if (time1 !== 0) {
-              setScore1((0.3 * (300 - time1)) / 3);
-              console.log(score1);
-              console.log(level);
+            if(level === 2){
+              setTime2(elapsedTime)
+            }
+            if (time1 !== 0 && level === 1) {
+              setScore1(Math.round((0.3 * (300 - time1)) / 3));
+              console.log("score 1", score1);
               setLevel(2);
               console.log(level);
 
             }
-            if (time2 !== 0) {
+            if (time2 !== 0 && level === 2) {
               setScore2((0.7 * (300 - time2)) / 3);
-              setLevel(0);
+              console.log("score 2", score2)
+              setLevel(3);
             }
           }
         })
