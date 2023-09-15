@@ -8,9 +8,6 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   getFirestore,
-  collection,
-  query,
-  where,
   getDoc,
   updateDoc,
   doc,
@@ -66,7 +63,6 @@ function Dashboard() {
     "elapsedTime"
   );
   console.log(userEmail);
-  userEmail_new=userEmail;
   console.log(elapsedTimeString);
   const elapsedTime = !isNaN(elapsedTimeString)
     ? parseInt(elapsedTimeString, 10)
@@ -83,19 +79,18 @@ function Dashboard() {
       console.log(error);
     }
     // Fetch user data when userEmail changes
-    if (userEmail_new) {
+    if (userEmail && elapsedTime !== -1) {
       getUserByEmail(userEmail)
         .then((userData) => {
           if (userData !== null) {
             console.log("User Time : ", userData.T1);
-            if(level==0){
-              setLevel(1);
-            }
-            if(level==1){
+            if(level===1){
               setTime1(elapsedTime)
               userData.T1=elapsedTime;
             }
-            console.log("User Time : ", userData.T1);
+            if(level === 0){
+              setLevel(1)
+            }
             if (time1 !== 0) {
               setScore1((0.3 * (300 - time1)) / 3);
               console.log(score1);
@@ -117,7 +112,7 @@ function Dashboard() {
   }, [userEmail, time1, time2, elapsedTime]);
 
   const handleContinueClick = () => {
-   if(level==1){
+   if(level===1){
     console.log("handleContinueClick called");
     const targetUrl = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(
       userEmail_new
@@ -128,7 +123,7 @@ function Dashboard() {
   
   };
   const handleContinueClick2 = () => {
-    if(level==2){
+    if(level===2){
     console.log("handleContinueClick2 called");
     const targetUrl2 = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(
       userEmail_new
