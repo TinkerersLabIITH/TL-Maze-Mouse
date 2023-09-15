@@ -25,6 +25,7 @@ import { useNavigate } from "react-router-dom";
 const db = getFirestore(app);
 const scoresRef = collection(db, "Users");
 const q = query(scoresRef, orderBy("Score", "desc"), limit("10"));
+const userEmail = new URLSearchParams(location.search).get("userEmail");
 var temp = [];
 const initialSnapshot = await getDocs(q);
 initialSnapshot.forEach((e) => {
@@ -72,7 +73,16 @@ function LandingPage() {
         <div
           className="pink-button"
           style={{ width: "45%" }}
-          onClick={() => navigate(-1)}
+          onClick={() => {
+            if(userEmail === null){
+              navigate(-1)
+            }else{
+              const targetUrl = `https://tinkererslabiith.github.io/TL-Maze-Mouse/#/dashboard?userEmail=${encodeURIComponent(
+              userEmail
+            )}&elapsedTime=${encodeURIComponent(-2)}`;
+            window.location.href = targetUrl
+            }
+          }}
         >
           <div className="pink-button-inner" style={{ width: "90%" }}>
             <div className="pink-button-rect" />

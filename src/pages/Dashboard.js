@@ -17,8 +17,8 @@ import { app } from "../firebase.config";
 
 const auth = getAuth();
 const db = getFirestore(app);
-let level=1;
-let s=0;
+let level = 1;
+let s = 0;
 
 //To get the data from the BD by email
 async function getUserByEmail(email) {
@@ -66,18 +66,18 @@ function Dashboard() {
   const elapsedTime = !isNaN(elapsedTimeString)
     ? parseInt(elapsedTimeString, 10)
     : 0;
-    getUserByEmail(userEmail)
-    .then((user)=>{
-      if(elapsedTime === -1 && user.T1===0){
-        level=1;
+  getUserByEmail(userEmail)
+    .then((user) => {
+      if ((elapsedTime === -1 || elapsedTime===-2) && user.T1 === 0) {
+        level = 1;
       }
-      else if(user.T1 === 0){
-        level=2;
+      else if (user.T1 === 0 || elapsedTime === -2) {
+        level = 2;
       }
-      else if(user.T2 === 0 ){
-        level=3;
+      else if (user.T2 === 0) {
+        level = 3;
       }
-      else{
+      else {
         setScore1(Math.round((0.3 * (300 - user.T1)) / 3));
         setScore2(Math.round((0.7 * (300 - user.T2)) / 3));
       }
@@ -91,22 +91,22 @@ function Dashboard() {
           if (userData !== null) {
 
             console.log("User Time : ", userData.T1)
-            if(level==2 && userData.T1 === 0){
+            if (level == 2 && userData.T1 === 0) {
               setTime1(elapsedTime)
               setScore1(Math.round((0.3 * (300 - time1)) / 3))
-              updateUserByEmail(userEmail, {T1: time1})
+              updateUserByEmail(userEmail, { T1: time1 })
               console.log("score 1", score1, "and level is ", level)
-              updateUserByEmail(userEmail, {Score:(0.3 * (300 - time1)) / 3 })
+              updateUserByEmail(userEmail, { Score: (0.3 * (300 - time1)) / 3 })
             }
-            if(level === 3 && userData.T2 === 0){
+            if (level === 3 && userData.T2 === 0) {
               setScore1(Math.round((0.3 * (300 - userData.T1)) / 3))
               setTime2(elapsedTime)
               setScore2((0.7 * (300 - time2)) / 3)
-              updateUserByEmail(userEmail, {T2: time2})
-              level=4;
-              s=userData.Score;
-              s=s + score2;
-              updateUserByEmail(userEmail, {Score:s})
+              updateUserByEmail(userEmail, { T2: time2 })
+              level = 4;
+              s = userData.Score;
+              s = s + score2;
+              updateUserByEmail(userEmail, { Score: s })
             }
           }
         })
@@ -117,23 +117,23 @@ function Dashboard() {
   }, [elapsedTime, level]);
 
   const handleContinueClick = () => {
-   if(level===1){
-    console.log("handleContinueClick called");
-    const targetUrl = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(
-      userEmail
-    )}&value=${"1"}`;
+    if (level === 1) {
+      console.log("handleContinueClick called");
+      const targetUrl = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(
+        userEmail
+      )}&value=${"1"}`;
 
-    window.location.href = targetUrl;
-   }
-  
+      window.location.href = targetUrl;
+    }
+
   };
   const handleContinueClick2 = () => {
-    if(level===3){
-    console.log("handleContinueClick2 called");
-    const targetUrl2 = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(
-      userEmail
-    )}&value=${"2"}`;
-    window.location.href = targetUrl2;
+    if (level === 3) {
+      console.log("handleContinueClick2 called");
+      const targetUrl2 = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(
+        userEmail
+      )}&value=${"2"}`;
+      window.location.href = targetUrl2;
     }
   };
   function handleLogout() {
@@ -180,17 +180,17 @@ function Dashboard() {
               style={
                 level === 1
                   ? {
-                      fontSize: "1.8rem",
-                      width: "max-content",
-                      marginLeft: "30px",
-                      marginRight: "20px",
-                    }
+                    fontSize: "1.8rem",
+                    width: "max-content",
+                    marginLeft: "30px",
+                    marginRight: "20px",
+                  }
                   : {
-                      fontSize: "1.3rem",
-                      width: "max-content",
-                      marginLeft: "45px",
-                      marginRight: "20px",
-                    }
+                    fontSize: "1.3rem",
+                    width: "max-content",
+                    marginLeft: "45px",
+                    marginRight: "20px",
+                  }
               }
             >
               {level === 1 ? "PLAY" : score1}
@@ -214,20 +214,20 @@ function Dashboard() {
               style={
                 level === 2
                   ? {
-                      fontSize: "1.8rem",
-                      width: "max-content",
-                      marginLeft: "30px",
-                      marginRight: "20px",
-                    }
+                    fontSize: "1.8rem",
+                    width: "max-content",
+                    marginLeft: "30px",
+                    marginRight: "20px",
+                  }
                   : {
-                      fontSize: "1.3rem",
-                      width: "max-content",
-                      marginLeft: "45px",
-                      marginRight: "20px",
-                    }
+                    fontSize: "1.3rem",
+                    width: "max-content",
+                    marginLeft: "45px",
+                    marginRight: "20px",
+                  }
               }
             >
-              {level === 2 ? "PLAY" : score2 }
+              {level === 2 ? "PLAY" : score2}
             </p>
             <div className="pink-btn-circle">
               <div className="pink-btn-c-i">2</div>
@@ -239,7 +239,12 @@ function Dashboard() {
         <div
           className="pink-button"
           style={{ width: "80%" }}
-          onClick={() => navigate("/leaderboard")}
+          onClick={() => {
+            const targetUrl = `https://tinkererslabiith.github.io/TL-Maze-Mouse/#/leaderboard?userEmail=${encodeURIComponent(
+              userEmail
+            )}`;
+            window.location.href = targetUrl;
+          }}
         >
           <div className="pink-button-inner" style={{ width: "90%" }}>
             <div className="pink-button-rect" />
