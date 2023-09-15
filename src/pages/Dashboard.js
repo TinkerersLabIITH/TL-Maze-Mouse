@@ -17,6 +17,7 @@ import { app } from "../firebase.config";
 
 const auth = getAuth();
 const db = getFirestore(app);
+let level=0;
 
 //To get the data from the BD by email
 async function getUserByEmail(email) {
@@ -52,7 +53,6 @@ function Dashboard() {
   const location = useLocation();
   //const userEmail = location.state ? location.state.userEmail : null;
   const navigate = useNavigate();
-  const [level, setLevel] = useState(0);
   const [score1, setScore1] = useState(0);
   const [score2, setScore2] = useState(0);
   const [time1, setTime1] = useState(0);
@@ -65,13 +65,20 @@ function Dashboard() {
   const elapsedTime = !isNaN(elapsedTimeString)
     ? parseInt(elapsedTimeString, 10)
     : 0;
-
+    getUserByEmail(userEmail)
+    .then((user)=>{
+      if(elapsedTime === -1){
+        level=1;
+      }
+      else if(user.T1 === 0){
+        level=2;
+      }
+      else if(user.T2 === 0 ){
+        level=3;
+      }
+    })
   //Getting the user time and calculated the scores
   useEffect(() => {
-    if(elapsedTime === -1 || level === 0){
-      setLevel(1)
-      console.log("Level is ", level)
-    }
     // Fetch user data when userEmail changes
     if (userEmail && elapsedTime !== -1) {
       getUserByEmail(userEmail)
@@ -79,20 +86,17 @@ function Dashboard() {
           if (userData !== null) {
 
             console.log("User Time : ", userData.T1)
-            if(level===1 && userData.T1 === 0){
+            if(level==2 && userData.T1 === 0){
               setTime1(elapsedTime)
               setScore1(Math.round((0.3 * (300 - time1)) / 3))
               updateUserByEmail(userEmail, {T1: time1})
               console.log("score 1", score1, "and level is ", level)
 
-            }else if(level === 1 && userData.T1 !== 0){
-              setLevel(2)
             }
-            if(level === 2 && userData.T2 === 0){
+            if(level === 3 && userData.T2 === 0){
               setTime2(elapsedTime)
               setScore2((0.7 * (300 - time2)) / 3)
               updateUserByEmail(userEmail, {T2: time2})
-              setLevel(3)
             }
           }
         })
