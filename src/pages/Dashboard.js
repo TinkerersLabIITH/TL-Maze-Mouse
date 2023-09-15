@@ -90,6 +90,7 @@ function Dashboard() {
             }
             if(level === 0){
               setLevel(1)
+              console.log("Current level is ", level)
             }
             if (time1 !== 0) {
               setScore1((0.3 * (300 - time1)) / 3);
