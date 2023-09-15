@@ -53,7 +53,7 @@ function Dashboard() {
   const location = useLocation();
   //const userEmail = location.state ? location.state.userEmail : null;
   const navigate = useNavigate();
-  let level = 0;
+  const [level, setLevel] = useState(0);
   const [score1, setScore1] = useState(0);
   const [score2, setScore2] = useState(0);
   const [time1, setTime1] = useState(0);
@@ -79,29 +79,34 @@ function Dashboard() {
       console.log(error);
     }
     if(elapsedTime === -1){
-      level = 1
-      console.log(level)
+      setLevel(1)
+      console.log("Level is ", level)
     }
     // Fetch user data when userEmail changes
     if (userEmail && elapsedTime !== -1) {
+      if(level === 0){
+        setLevel(1)
+        console.log("Current level is ", level)
+      }
       getUserByEmail(userEmail)
         .then((userData) => {
           if (userData !== null) {
-            console.log("User Time in DB: ", userData.T1);
+            console.log("User Time : ", userData.T1);
             if(level===1){
               setTime1(elapsedTime)
+              userData.T1=elapsedTime;
             }
             if (time1 !== 0) {
               setScore1((0.3 * (300 - time1)) / 3);
               console.log(score1);
               console.log(level);
-              level = 2
+              setLevel(2);
               console.log(level);
 
             }
             if (time2 !== 0) {
               setScore2((0.7 * (300 - time2)) / 3);
-              level = 0;
+              setLevel(0);
             }
           }
         })
@@ -109,7 +114,7 @@ function Dashboard() {
           console.log("Error", error);
         });
     }
-  }, [userEmail, time1, time2, elapsedTime]);
+  }, [userEmail, time1, time2, elapsedTime, level]);
 
   const handleContinueClick = () => {
    if(level===1){
