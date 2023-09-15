@@ -75,13 +75,13 @@ function Dashboard() {
     : 0;
   getUserByEmail(userEmail)
     .then((user) => {
-      if ((elapsedTime === -1 || elapsedTime === -2) && user.T1 === 0) {
+      if (value === 0 && user.T1 === 0) {
         level = 1;
       }
-      else if (user.T1 === 0 || elapsedTime === -2) {
+      else if (user.T1 !== 0 || (user.T2 === 0 && value === 1) ) {
         level = 2;
       }
-      else if (user.T2 === 0) {
+      else if (user.T1 !== 0 && user.T2 !== 0 && value === 2 ) {
         level = 3;
       }
       else {
@@ -98,14 +98,14 @@ function Dashboard() {
           if (userData !== null) {
 
             console.log("User Time : ", userData.T1)
-            if (level == 2 && userData.T1 === 0) {
+            if (value === 1 && userData.T1 === 0) {
               setTime1(elapsedTime)
               setScore1(Math.round((0.3 * (300 - time1)) / 3))
               updateUserByEmail(userEmail, { T1: time1 })
               console.log("score 1", score1, "and level is ", level)
               updateUserByEmail(userEmail, { Score: (0.3 * (300 - time1)) / 3 })
             }
-            if (level === 3 && userData.T2 === 0) {
+            if (value === 2 && userData.T2 === 0) {
               setScore1(Math.round((0.3 * (300 - userData.T1)) / 3))
               setTime2(elapsedTime)
               setScore2((0.7 * (300 - time2)) / 3)
@@ -121,7 +121,7 @@ function Dashboard() {
           console.log("Error", error);
         });
     }
-  }, [elapsedTime, level]);
+  }, [elapsedTime, value, level]);
 
   const handleContinueClick = () => {
     if (level === 1) {
@@ -135,7 +135,7 @@ function Dashboard() {
 
   };
   const handleContinueClick2 = () => {
-    if (level === 3) {
+    if (level === 2) {
       console.log("handleContinueClick2 called");
       const targetUrl2 = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(
         userEmail
