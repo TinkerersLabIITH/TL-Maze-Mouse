@@ -80,9 +80,14 @@ function Dashboard() {
     }
     if(elapsedTime === -1){
       setLevel(1)
+      console.log("Level is ", level)
     }
     // Fetch user data when userEmail changes
     if (userEmail && elapsedTime !== -1) {
+      if(level === 0){
+        setLevel(1)
+        console.log("Current level is ", level)
+      }
       getUserByEmail(userEmail)
         .then((userData) => {
           if (userData !== null) {
@@ -90,10 +95,6 @@ function Dashboard() {
             if(level===1){
               setTime1(elapsedTime)
               userData.T1=elapsedTime;
-            }
-            if(level === 0){
-              setLevel(1)
-              console.log("Current level is ", level)
             }
             if (time1 !== 0) {
               setScore1((0.3 * (300 - time1)) / 3);
