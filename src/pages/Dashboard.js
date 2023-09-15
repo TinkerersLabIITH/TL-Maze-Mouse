@@ -18,6 +18,7 @@ import { app } from "../firebase.config";
 const auth = getAuth();
 const db = getFirestore(app);
 let level=1;
+let s=0;
 
 //To get the data from the BD by email
 async function getUserByEmail(email) {
