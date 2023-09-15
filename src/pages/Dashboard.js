@@ -62,8 +62,6 @@ function Dashboard() {
   const elapsedTimeString = new URLSearchParams(location.search).get(
     "elapsedTime"
   );
-  console.log(userEmail);
-  console.log(elapsedTimeString);
   const elapsedTime = !isNaN(elapsedTimeString)
     ? parseInt(elapsedTimeString, 10)
     : 0;
@@ -77,6 +75,9 @@ function Dashboard() {
       }
     } catch (error) {
       console.log(error);
+    }
+    if(elapsedTime === -1){
+      setLevel(1)
     }
     // Fetch user data when userEmail changes
     if (userEmail && elapsedTime !== -1) {
