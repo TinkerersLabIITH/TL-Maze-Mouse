@@ -17,7 +17,7 @@ import { app } from "../firebase.config";
 
 const auth = getAuth();
 const db = getFirestore(app);
-let level=0;
+let level=1;
 
 //To get the data from the BD by email
 async function getUserByEmail(email) {
@@ -118,7 +118,7 @@ function Dashboard() {
   
   };
   const handleContinueClick2 = () => {
-    if(level===2){
+    if(level===3){
     console.log("handleContinueClick2 called");
     const targetUrl2 = `https://tinkererslabiith.github.io/micromouse-game/?userEmail=${encodeURIComponent(
       userEmail
