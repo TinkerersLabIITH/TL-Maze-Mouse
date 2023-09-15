@@ -68,13 +68,6 @@ function Dashboard() {
 
   //Getting the user time and calculated the scores
   useEffect(() => {
-    try {
-      if (elapsedTime !== 0) {
-        console.log("Elapsed Time recorded: ",elapsedTime);
-      }
-    } catch (error) {
-      console.log(error);
-    }
     if(elapsedTime === -1 || level === 0){
       setLevel(1)
       console.log("Level is ", level)
@@ -84,13 +77,14 @@ function Dashboard() {
       getUserByEmail(userEmail)
         .then((userData) => {
           if (userData !== null) {
+
             console.log("User Time : ", userData.T1)
             if(level===1 && userData.T1 === 0){
               setTime1(elapsedTime)
               setScore1(Math.round((0.3 * (300 - time1)) / 3))
-              updateUserByEmail(userEmail, {T1: elapsedTime})
-              setLevel(2)
+              updateUserByEmail(userEmail, {T1: time1})
               console.log("score 1", score1, "and level is ", level)
+              setLevel(2)
 
             }else if(level === 1 && userData.T1 !== 0){
               setLevel(2)
@@ -98,7 +92,7 @@ function Dashboard() {
             if(level === 2 && userData.T2 === 0){
               setTime2(elapsedTime)
               setScore2((0.7 * (300 - time2)) / 3)
-              updateUserByEmail(userEmail, {T2: elapsedTime})
+              updateUserByEmail(userEmail, {T2: time2})
               setLevel(3)
             }
           }
@@ -107,7 +101,7 @@ function Dashboard() {
           console.log("Error", error);
         });
     }
-  }, [userEmail, elapsedTime, level]);
+  }, [elapsedTime, level]);
 
   const handleContinueClick = () => {
    if(level===1){
