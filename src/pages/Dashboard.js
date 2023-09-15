@@ -98,13 +98,11 @@ function Dashboard() {
               console.log(level);
               setLevel(2);
               console.log(level);
+
             }
             if (time2 !== 0) {
               setScore2((0.7 * (300 - time2)) / 3);
-              console.log(score2);
-              console.log(level);
               setLevel(0);
-              console.log(level);
             }
           }
         })
