@@ -88,15 +88,24 @@ function Dashboard() {
         .then((userData) => {
           if (userData !== null) {
             console.log("User Time : ", userData.T1);
-            setTime1(userData.T1);
-            setTime2(userData.T2);
+            if(level==1){
+              setTime1(elapsedTime)
+              userData.T1=elapsedTime;
+            }
+            console.log("User Time : ", userData.T1);
             if (time1 !== 0) {
               setScore1((0.3 * (300 - time1)) / 3);
+              console.log(score1);
+              console.log(level);
               setLevel(2);
+              console.log(level);
             }
             if (time2 !== 0) {
               setScore2((0.7 * (300 - time2)) / 3);
+              console.log(score2);
+              console.log(level);
               setLevel(0);
+              console.log(level);
             }
           }
         })
