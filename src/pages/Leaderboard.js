@@ -76,14 +76,7 @@ function LandingPage() {
           className="pink-button"
           style={{ width: "45%" }}
           onClick={() => {
-            if(userEmail === null){
-              navigate(-1)
-            }else{
-              const targetUrl = `https://tinkererslabiith.github.io/TL-Maze-Mouse/#/dashboard?userEmail=${encodeURIComponent(
-              userEmail
-            )}&elapsedTime=${encodeURIComponent(-2)}`;
-            window.location.href = targetUrl
-            }
+            navigate(-1);
           }}
         >
           <div className="pink-button-inner" style={{ width: "90%" }}>
