@@ -78,6 +78,9 @@ function Dashboard() {
       if (value === 0 && user.T1 === 0) {
         level = 1;
       }
+      else if(user.T1===0 && value===1){
+        level=2;
+      }
       else if (user.T1 !== 0 && user.T2===0) {
         level = 2;
       }
