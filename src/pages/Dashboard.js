@@ -98,7 +98,7 @@ function Dashboard() {
               setTime2(elapsedTime)
               setLevel(2)
             }
-            if (time1 !== 0 && userData.T1 === 0) {
+            if (time1 != 0 && userData.T1 == 0) {
               setScore1(Math.round((0.3 * (300 - time1)) / 3));
               console.log("score 1", score1);
               updateUserByEmail(userEmail, {T1: elapsedTime})
