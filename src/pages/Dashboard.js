@@ -78,11 +78,8 @@ function Dashboard() {
       if (value === 0 && user.T1 === 0) {
         level = 1;
       }
-      else if (user.T1 !== 0 || (user.T2 === 0 && value === 1) ) {
+      else if (user.T1 !== 0 && user.T2===0) {
         level = 2;
-      }
-      else if (user.T1 !== 0 && user.T2 !== 0 && value === 2 ) {
-        level = 3;
       }
       else {
         setScore1(Math.round((0.3 * (300 - user.T1)) / 3));
