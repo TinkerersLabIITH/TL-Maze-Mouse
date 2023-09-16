@@ -61,7 +61,7 @@ function LandingPage() {
             const score = userData.Score || 0;
             console.log("User is in DB with score of ", score);
             if (score === 0) {
-              navigate("/Instructions", {
+              navigate("/promotion", {
                 state: { userEmail: user.email, userPic: user.photoURL },
               });
             } else {
@@ -79,7 +79,7 @@ function LandingPage() {
               picURL: user.photoURL,
               Score: 0,
             });
-            navigate("/Instructions", {
+            navigate("/promotion", {
               state:{userEmail: user.email, userPic: user.photoURL}
             })
           }
