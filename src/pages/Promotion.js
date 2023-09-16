@@ -35,7 +35,7 @@ function Promotion() {
                   )}`;
                   window.location.href = targetUrl;
           }
-        }), 3750);
+        }), 4000);
       }, []);
     //To get the data from the BD by email
 async function getUserByEmail(email) {
