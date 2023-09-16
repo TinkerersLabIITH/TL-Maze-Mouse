@@ -107,7 +107,7 @@ function Dashboard() {
               console.log("score 1", score1, "and level is ", level)
               updateUserByEmail(userEmail, { Score: (0.3 * (300 - time1)) / 3 })
             }
-            if (value === 2 && userData.T2 === 0) {
+            if (value === 2 && userData.T2 === 0 && level !==4) {
               setScore1(Math.round((0.3 * (300 - userData.T1)) / 3))
               setTime2(elapsedTime)
               setScore2((0.7 * (300 - time2)) / 3)
