@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/TL-Maze-Mouse/static/css/main.0f58611e.css",
+    "main.css": "/TL-Maze-Mouse/static/css/main.19fbec0b.css",
     "main.js": "/TL-Maze-Mouse/static/js/main.a3c4cbba.js",
     "static/media/tinkererlogo.svg": "/TL-Maze-Mouse/static/media/tinkererlogo.985a1c03124d140c5773b1963c799ac3.svg",
     "static/media/micromouselogo.gif": "/TL-Maze-Mouse/static/media/micromouselogo.1f659c52630a59939f9a.gif",
@@ -10,11 +10,11 @@
     "static/media/maze.svg": "/TL-Maze-Mouse/static/media/maze.e3979c9ce6c4a9b329c42c97fd6e63e9.svg",
     "static/media/trophy.svg": "/TL-Maze-Mouse/static/media/trophy.2e2daa40365ca6d7b4b310ed9fa31027.svg",
     "index.html": "/TL-Maze-Mouse/index.html",
-    "main.0f58611e.css.map": "/TL-Maze-Mouse/static/css/main.0f58611e.css.map",
+    "main.19fbec0b.css.map": "/TL-Maze-Mouse/static/css/main.19fbec0b.css.map",
     "main.a3c4cbba.js.map": "/TL-Maze-Mouse/static/js/main.a3c4cbba.js.map"
   },
   "entrypoints": [
-    "static/css/main.0f58611e.css",
+    "static/css/main.19fbec0b.css",
     "static/js/main.a3c4cbba.js"
   ]
 }
