@@ -4,7 +4,7 @@ function Leaderboarddiv(props) {
         <h4>{props.pos}</h4>
       <div className="lb-name">
         <h3>{props.name}</h3>
-        <p>{Math.round(props.time)}</p>
+        <p>{Math.round(parseFloat(props.time))}</p>
       </div>
     </div>
   );
