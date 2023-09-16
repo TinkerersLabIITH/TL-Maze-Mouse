@@ -107,7 +107,7 @@ function LandingPage() {
       <div className="lpBox">
         <img src={mmouse} alt="Micro Mouse logo" />
         <p className="headingMM">MICROMOUSE</p>
-        <p className="paraMM">loremiapsum</p>
+        <p className="paraMM">Team TL</p>
         <div className="playpage-buttons" style={{ marginTop: "10vh" }}>
           <div className="pink-button" style={{ width: "70%" }}>
             <div className="pink-button-inner" style={{ width: "90%" }}>
