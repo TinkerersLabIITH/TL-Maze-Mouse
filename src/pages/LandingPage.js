@@ -9,15 +9,12 @@ import { app } from "../firebase.config";
 import {
   getFirestore,
   doc,
-  collection,
   getDoc,
   setDoc,
-  Timestamp,
 } from "firebase/firestore";
 import {
   getAuth,
   GoogleAuthProvider,
-  onAuthStateChanged,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
@@ -38,8 +35,7 @@ function LandingPage() {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
+
         if (!user.email.endsWith("@iith.ac.in")) {
           signOut(auth)
             .then(() => {
@@ -83,6 +79,9 @@ function LandingPage() {
               picURL: user.photoURL,
               Score: 0,
             });
+            navigate("/Instructions", {
+              state:{userEmail: user.email, userPic: user.photoURL}
+            })
           }
         }
       })
@@ -104,7 +103,6 @@ function LandingPage() {
       </div>
       <div className="playpage-logo">
         <img src={tinkererLogo} alt="tinkerer logo" />
-        {/* <img src={profilePicURL} alt="Profile Pic"/> */}
       </div>
       <div className="lpBox">
         <img src={mmouse} alt="Micro Mouse logo" />
