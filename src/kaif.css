@@ -124,8 +124,9 @@ body {
     align-items: center;
     flex-direction: column;
     width:100%;
-    margin-top:30%;
+    margin-top:10%;
     gap:5vh;
+    overflow: hidden;
   }
   .lpBoxPromo img{
     width: 70%; 
@@ -138,6 +139,47 @@ body {
     margin-left: 5px;
   }
   
+  .mlnpromologo {
+    opacity: 0;
+  transform: translateY(-100%);
+  animation: milanAnimation 4s ease-in-out forwards;
+
+  }
+   .tkrpromologo {
+    opacity: 0;
+    transform: translateY(100%);
+    animation: tinkererAnimation 4s ease-in-out forwards;
+  }
+  @keyframes milanAnimation {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    50% {
+      transform: translateY(0);
+      opacity: 1;
+  }
+  100% {
+    transform: translateY(50%);
+    opacity: 0;
+}
+}
+
+@keyframes tinkererAnimation {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+      transform: translateY(-50%);
+      opacity: 0;
+  }
+}
+
 }
 @media screen and (max-width: 800px) {
     .pink-button {
