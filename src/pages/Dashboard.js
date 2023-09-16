@@ -18,7 +18,6 @@ import { app } from "../firebase.config";
 const auth = getAuth();
 const db = getFirestore(app);
 let level = 1;
-let s = 0;
 
 //To get the data from the BD by email
 async function getUserByEmail(email) {
@@ -89,6 +88,7 @@ function Dashboard() {
       else {
         setScore1(Math.round((0.3 * (300 - user.T1)) / 3));
         setScore2(Math.round((0.7 * (300 - user.T2)) / 3));
+        level = 4
       }
     })
   //Getting the user time and calculated the scores
@@ -107,7 +107,7 @@ function Dashboard() {
               console.log("score 1", score1, "and level is ", level)
               updateUserByEmail(userEmail, { Score: (0.3 * (300 - time1)) / 3 })
             }
-            if (value === 2 && userData.T2 === 0 && level !==4) {
+            if ((value === 2 && userData.T2 === 0) && level !==4) {
               setScore1(Math.round((0.3 * (300 - userData.T1)) / 3))
               setTime2(elapsedTime)
               console.log("Time 2 is : ",time2)
