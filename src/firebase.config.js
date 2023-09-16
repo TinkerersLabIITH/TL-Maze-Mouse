@@ -2,15 +2,14 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAS__QBG9EAIJoiZP-FhKEXbSzDrskZTe0",
-  authDomain: "tl-micromouse.firebaseapp.com",
-  projectId: "tl-micromouse",
-  storageBucket: "tl-micromouse.appspot.com",
-  messagingSenderId: "695518199308",
-  appId: "1:695518199308:web:2847824fc1e1d693497829",
-  measurementId: "G-8V5Q2JHD83"
+  apiKey: "AIzaSyAjufsDTNKcINqn7mMQlHUTk7fEIQUHUr8",
+  authDomain: "micromouse-tl.firebaseapp.com",
+  projectId: "micromouse-tl",
+  storageBucket: "micromouse-tl.appspot.com",
+  messagingSenderId: "728405710661",
+  appId: "1:728405710661:web:fe8e946c8934b6156ed02c",
+  measurementId: "G-X45P8K1E0N"
 };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-

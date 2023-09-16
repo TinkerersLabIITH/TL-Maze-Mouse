@@ -113,9 +113,7 @@ function Dashboard() {
               setScore2((0.7 * (300 - time2)) / 3)
               updateUserByEmail(userEmail, { T2: time2 })
               level = 4;
-              s = userData.Score;
-              s = s + score2;
-              updateUserByEmail(userEmail, { Score: s })
+              updateUserByEmail(userEmail, { Score: (userData.Score + score2) })
             }
           }
         })
