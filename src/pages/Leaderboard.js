@@ -63,7 +63,7 @@ function LandingPage() {
                 <Leaderboarddiv
                   key={index}
                   name={item.Name}
-                  time={item.Score}
+                  time={Math.round(item.Score)}
                   pos={index + 1}
                 />
               );
