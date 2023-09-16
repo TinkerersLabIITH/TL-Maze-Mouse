@@ -113,8 +113,9 @@ function Dashboard() {
               setScore2((0.7 * (300 - time2)) / 3)
               updateUserByEmail(userEmail, { T2: time2 })
               console.log("Score 2 is: ",score2)
+              console.log("Score 2 calculated: ",(0.7 * (300 - time2)) / 3)
               console.log("Score 1 in DB is: ", score1)
-              updateUserByEmail(userEmail, { Score: (userData.Score + score2) })
+              updateUserByEmail(userEmail, { Score: (userData.Score + (0.7 * (300 - time2)) / 3) })
               level=4
             }
           }
@@ -202,7 +203,7 @@ function Dashboard() {
                   }
               }
             >
-              {level === 1 ? "PLAY" : score1}
+              {level === 1 ? "PLAY" : Math.round(score1)}
             </p>
             <div className="pink-btn-circle">
               <div className="pink-btn-c-i">1</div>
@@ -236,7 +237,7 @@ function Dashboard() {
                   }
               }
             >
-              {level === 2 ? "PLAY" : score2}
+              {level === 2 ? "PLAY" : Math.round(score2)}
             </p>
             <div className="pink-btn-circle">
               <div className="pink-btn-c-i">2</div>
