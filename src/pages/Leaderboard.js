@@ -24,7 +24,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const db = getFirestore(app);
 const scoresRef = collection(db, "Users");
-const q = query(scoresRef, orderBy("Score", "desc"), limit("10"));
+const q = query(scoresRef, orderBy("Score", "desc"), limit("50"));
 
 var temp = [];
 const initialSnapshot = await getDocs(q);
@@ -56,6 +56,7 @@ function LandingPage() {
       <div className="lpBox">
         <img src={mmouse} />
         <p className="headingMM">LEADER BOARD</p>
+        <p id="t_50">Top-50 Participants</p>
         <div className="leaderboard">
           <div className="leaderboard-in">
             {Object.values(scores).map((item, index) => {

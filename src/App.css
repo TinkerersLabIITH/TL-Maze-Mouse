@@ -348,7 +348,10 @@ body {
     overflow-x: hidden; 
     border-radius: 10px;
   }
-
+  #t_50{
+    color: #05faff ;
+    font-size: larger;
+  }
   .leaderboard-in{
     display: flex;
     flex-direction: column;
