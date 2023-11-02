@@ -55,7 +55,7 @@ function Instructions() {
         <p className="paraMMIp">INSTRUCTIONS</p>
         <p className="paraMMIpSmall">1. Just swipe on the screen in the direction you want to move the mouse</p>
         <p className="paraMMIpSmall">2. Maximum Time is 5 Minutes</p>
-        <p className="paraMMIpSmall">3. Score will be calculated based on the time taken for garbbing the cheese.</p>
+        <p className="paraMMIpSmall">3. Score will be calculated based on the time taken for grabbing the cheese.</p>
         
         <div className="playpage-buttons" style={{ marginTop: "10vh" }}>
           <div className="pink-button" onClick={handleContinueClick}>

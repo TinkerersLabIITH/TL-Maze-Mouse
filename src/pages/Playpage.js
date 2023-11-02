@@ -58,14 +58,14 @@ function PlayPage() {
               <p style={{ fontSize: "1.7rem" }}>PLAY DEMO</p>
             </div>
           </div>
-          <div className="pink-button">
+          {/* <div className="pink-button">
             <div className="pink-button-inner">
               <div className="pink-button-rect" />
               <p style={{ fontSize: "1.5rem", width: "max-content" }}>
-                Watch demo
+                
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="mazebg">
           <img src={mazebg} alt="maze background" />
