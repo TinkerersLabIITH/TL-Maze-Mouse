@@ -36,16 +36,7 @@ function LandingPage() {
         // The signed-in user info.
         const user = result.user;
 
-        if (!user.email.endsWith("@iith.ac.in")) {
-          signOut(auth)
-            .then(() => {
-              alert("Sign in with the Institute email ID");
-              console.log("successfully signed out");
-            })
-            .catch((err) => {
-              console.log("error in signing out");
-            });
-        } else {
+        
           console.log(result.user.metadata.lastSignInTime);
           console.log("successfully signed in");
           console.log(user.photoURL);
@@ -82,7 +73,7 @@ function LandingPage() {
               state:{userEmail: user.email, userPic: user.photoURL}
             })
           }
-        }
+        
       })
       .catch((error) => {
         // Handle Errors here.
